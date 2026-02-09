@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Gadget - Sell, Buy & Exchange Your Gadgets</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #000000;
+            --secondary-black: #1a1a1a;
+            --accent-gray: #2d2d2d;
+            --primary-orange: #ff7f00;
+            --orange-hover: #ff9933;
+            --pure-white: #ffffff;
+            --light-gray: #f5f5f5;
+            --border-gray: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            background: var(--pure-white);
+            color: var(--primary-black);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Apple-style Transparent Navbar */
+        .navbar {
+            min-height: 70px;
+     
+            background: rgba(0, 0, 0, 0.4) !important;
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            padding: 0.8rem 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.8) !important;
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+  
+            color: var(--pure-white) !important;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand i {
+            color: var(--primary-orange);
+        }
+
+        .navbar-brand:hover {
+            opacity: 0.8;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            margin: 0 1rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--pure-white) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--primary-orange);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .btn-app {
+            background: var(--primary-orange);
+            color: var(--pure-white);
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-orange);
+        }
+
+        .btn-app:hover {
+            background: var(--orange-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 127, 0, 0.4);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d2d2d 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 60px;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 127, 0, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -300px;
+            right: -300px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 127, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -250px;
+            left: -250px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--pure-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-title .highlight {
+            color: var(--primary-orange);
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-weight: 400;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-buttons {
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn-primary-custom {
+            background: var(--primary-orange);
+            color: var(--pure-white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--primary-orange);
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--orange-hover);
+            color: var(--pure-white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 127, 0, 0.4);
+        }
+
+        .btn-secondary-custom {
+            background: transparent;
+            color: var(--pure-white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-secondary-custom:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--pure-white);
+            color: var(--pure-white);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 1s ease 0.8s both;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .phone-mockup {
+            width: 100%;
+            max-width: 450px;
+            filter: drop-shadow(0 20px 60px rgba(255, 127, 0, 0.3));
+            animation: floatPhone 3s ease-in-out infinite;
+        }
+
+        @keyframes floatPhone {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--pure-white);
+            padding: 80px 0;
+            position: relative;
+            z-index: 10;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            background: var(--pure-white);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-orange);
+            margin-bottom: 0.5rem;
+            display: block;
+            letter-spacing: -2px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+            display: block;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background: var(--light-gray);
+            position: relative;
+            z-index: 5;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 4rem;
+            font-weight: 400;
+        }
+
+        .feature-card {
+            background: var(--pure-white);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            height: 100%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+            box-shadow: 0 15px 40px rgba(255, 127, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--orange-hover));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .feature-icon i {
+            font-size: 2.2rem;
+            color: var(--pure-white);
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--pure-white);
+            position: relative;
+            z-index: 5;
+        }
+
+        .step-card {
+            position: relative;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--orange-hover));
+            color: var(--pure-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 127, 0, 0.3);
+        }
+
+        .step-card:hover .step-number {
+            transform: scale(1.2);
+            box-shadow: 0 10px 30px rgba(255, 127, 0, 0.5);
+        }
+
+        .step-card::after {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-orange), transparent);
+            z-index: 1;
+        }
+
+        .step-card:last-child::after {
+            display: none;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
+        }
+
+        .step-description {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* USP Section */
+        .usp-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d2d2d 100%);
+            color: var(--pure-white);
+            position: relative;
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        .usp-section::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 127, 0, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            left: -200px;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .usp-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 127, 0, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .usp-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+            border-color: var(--primary-orange);
+            box-shadow: 0 10px 30px rgba(255, 127, 0, 0.3);
+        }
+
+        .usp-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .usp-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .usp-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--light-gray);
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .cta-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--primary-black);
+            letter-spacing: -1px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .app-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .app-button {
+            background: var(--primary-black);
+            color: var(--pure-white);
+            padding: 1.2rem 2.5rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-black);
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .app-button:hover {
+            background: var(--primary-orange);
+            border-color: var(--primary-orange);
+            color: var(--pure-white);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 127, 0, 0.4);
+        }
+
+        .app-button i {
+            font-size: 2rem;
+        }
+
+        /* Simplified Footer */
+        .footer {
+            background: var(--primary-black);
+            color: var(--pure-white);
+            padding: 60px 0 30px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .footer-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-orange);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--pure-white);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-orange);
+            color: var(--pure-white);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: var(--primary-orange);
+            color: var(--pure-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(255, 127, 0, 0.4);
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--orange-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 127, 0, 0.6);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 127, 0, 0.2);
+            border-top-color: var(--primary-orange);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+.footer-img{
+    height: 250px;
+    width: 250px;
+}
+.header-img{
+    height: 100px;
+    width: 120px;
+}
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .navbar-collapse {
+        background: rgba(0, 0, 0, 0.95);
+        padding: 1rem;
+        border-radius: 12px;
+        margin-top: 10px;
+    }
+
+    .nav-link {
+        margin: 0.7rem 0;
+        text-align: center;
+    }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.3rem;
+            }
+
+            .step-card::after {
+                display: none;
+            }
+                 .hero-content {
+                margin-top: 80px;
+        text-align: center;
+    }
+        }
+
+        @media (max-width: 768px) {
+             .hero-content {
+                margin-top: 100px;
+        text-align: center;
+    }
+
+    .hero-title {
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .hero-section {
+        padding-top: 120px;
+    }
+            .hero-section {
+                padding: 100px 0 40px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .btn-primary-custom,
+            .btn-secondary-custom {
+                padding: 0.9rem 2rem;
+                font-size: 0.95rem;
+                display: block;
+                margin: 0.5rem auto;
+                max-width: 250px;
+            }
+
+            .feature-card {
+                margin-bottom: 2rem;
+            }
+
+            .phone-mockup {
+                max-width: 300px;
+                margin: 2rem auto;
+            }
+
+            .app-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .app-button {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .nav-link {
+                margin: 0.5rem 0;
+            }
+
+            .stat-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .feature-icon {
+                width: 75px;
+                height: 75px;
+            }
+
+            .feature-icon i {
+                font-size: 2rem;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.9rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Apple-style Transparent Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/bg_logo.png" class="header-img" > Budget Gadget
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <a href="#download" class="btn btn-app ms-3">Get App</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Sell, Buy & Exchange Your <span class="highlight">Gadgets</span></h1>
+                        <p class="hero-subtitle">Get the best value for your old devices and buy certified gadgets with 1-day delivery. 100% Genuine Products Guaranteed with complete warranty and quality assurance.</p>
+                        <div class="hero-buttons">
+                            <a href="#download" class="btn-primary-custom">Download App</a>
+                            <a href="#how-it-works" class="btn-secondary-custom">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image text-center">
+                        <svg class="phone-mockup" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="50" y="20" width="300" height="560" rx="30" fill="#1a1a1a" stroke="#ff7f00" stroke-width="3"/>
+                            <rect x="65" y="50" width="270" height="500" rx="20" fill="#fff"/>
+                            <rect x="65" y="50" width="270" height="30" rx="20" fill="#000"/>
+                            <circle cx="110" cy="120" r="20" fill="#ff7f00"/>
+                            <circle cx="180" cy="120" r="20" fill="#000"/>
+                            <circle cx="250" cy="120" r="20" fill="#ff7f00"/>
+                            <circle cx="110" cy="190" r="20" fill="#000"/>
+                            <circle cx="180" cy="190" r="20" fill="#ff7f00"/>
+                            <circle cx="250" cy="190" r="20" fill="#000"/>
+                            <rect x="85" y="240" width="230" height="120" rx="15" fill="#f5f5f5"/>
+                            <rect x="95" y="250" width="90" height="90" rx="10" fill="#e0e0e0"/>
+                            <rect x="195" y="260" width="110" height="15" rx="5" fill="#ff7f00"/>
+                            <rect x="195" y="285" width="80" height="12" rx="5" fill="#666"/>
+                            <rect x="195" y="305" width="110" height="25" rx="10" fill="#000"/>
+                            <rect x="85" y="510" width="230" height="25" rx="12" fill="#f5f5f5"/>
+                            <circle cx="120" cy="522" r="8" fill="#ff7f00"/>
+                            <circle cx="180" cy="522" r="8" fill="#000"/>
+                            <circle cx="240" cy="522" r="8" fill="#ff7f00"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="stat-card fade-in">
+                        <span class="stat-number" data-count="50000">0</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="stat-card fade-in">
+                        <span class="stat-number" data-count="100000">0</span>
+                        <span class="stat-label">Devices Sold</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card fade-in">
+                        <span class="stat-number">4.8<span style="font-size: 2rem;">★</span></span>
+                        <span class="stat-label">App Rating</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-card fade-in">
+                        <span class="stat-number" data-count="24">0</span>
+                        <span class="stat-label">Hour Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Choose Budget Gadget?</h2>
+            <p class="section-subtitle fade-in">Experience the best gadget marketplace with unmatched features</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">100% Genuine Products</h3>
+                        <p class="feature-description">Every device is thoroughly verified and certified. We guarantee authentic products with complete quality checks.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3 class="feature-title">1-Day Delivery</h3>
+                        <p class="feature-description">Get your gadgets delivered to your doorstep within 24 hours. Fast, reliable, and secure delivery guaranteed.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 class="feature-title">Best Customer Service</h3>
+                        <p class="feature-description">24/7 dedicated support team ready to assist you. Your satisfaction is our top priority.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3 class="feature-title">7-Day Warranty Check</h3>
+                        <p class="feature-description">Test your device for 7 days. Not satisfied? Get full refund with no questions asked.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3 class="feature-title">Loyalty Rewards</h3>
+                        <p class="feature-description">Earn points with every transaction. Unlock exclusive deals and discounts for loyal customers.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Easy Exchange</h3>
+                        <p class="feature-description">Exchange your old device for a new one or get instant cash. Simple, fast, and transparent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title fade-in">How It Works</h2>
+            <p class="section-subtitle fade-in">Sell or buy your gadgets in 4 simple steps</p>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="step-card fade-in">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Select Your Device</h3>
+                        <p class="step-description">Choose the gadget you want to sell or buy from our extensive catalog</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="step-card fade-in">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Get Instant Quote</h3>
+                        <p class="step-description">Receive an instant quote based on device condition and market value</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="step-card fade-in">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Free Pickup/Delivery</h3>
+                        <p class="step-description">Schedule a free pickup or get delivery within 24 hours</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="step-card fade-in">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Get Paid Instantly</h3>
+                        <p class="step-description">Receive instant payment or enjoy your new device with warranty</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USP Section -->
+    <section id="usp" class="usp-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title text-white fade-in">Our Unique Promise</h2>
+                    <div class="usp-card fade-in">
+                        <div class="usp-icon">🎯</div>
+                        <h3 class="usp-title">Genuine Products Only</h3>
+                        <p class="usp-description">We verify every device through a rigorous 32-point quality check. No counterfeits, no compromises.</p>
+                    </div>
+                    <div class="usp-card fade-in">
+                        <div class="usp-icon">⚡</div>
+                        <h3 class="usp-title">Lightning Fast Service</h3>
+                        <p class="usp-description">One day delivery isn't a promise, it's our standard. Get your gadget in 24 hours guaranteed.</p>
+                    </div>
+                    <div class="usp-card fade-in">
+                        <div class="usp-icon">🛡️</div>
+                        <h3 class="usp-title">Risk-Free Shopping</h3>
+                        <p class="usp-description">7-day warranty check period. Not happy? Return hassle-free with full refund.</p>
+                    </div>
+                    <div class="usp-card fade-in">
+                        <div class="usp-icon">🎁</div>
+                        <h3 class="usp-title">Rewards That Matter</h3>
+                        <p class="usp-description">Earn loyalty points on every transaction. More you trade, more you save.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center fade-in">
+                        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="max-width: 400px;">
+                            <path d="M250 50 L400 100 L400 250 C400 350 250 450 250 450 C250 450 100 350 100 250 L100 100 Z" fill="none" stroke="#ff7f00" stroke-width="4"/>
+                            <path d="M250 80 L370 120 L370 250 C370 330 250 410 250 410 C250 410 130 330 130 250 L130 120 Z" fill="rgba(255,127,0,0.1)"/>
+                            <path d="M200 250 L230 280 L300 200" fill="none" stroke="#ff7f00" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="250" cy="250" r="80" fill="none" stroke="rgba(255,127,0,0.3)" stroke-width="2"/>
+                            <circle cx="250" cy="250" r="100" fill="none" stroke="rgba(255,127,0,0.2)" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Download Section -->
+    <section id="download" class="cta-section">
+        <div class="container">
+                  <img src="images/bg_logo.png" class="footer-img">
+            <h2 class="cta-title fade-in">Download Budget Gadget App</h2>
+            <p class="cta-subtitle fade-in">Available on iOS and Android. Start selling and buying today!</p>
+            <div class="app-buttons fade-in">
+                <a href="#" class="app-button">
+                    <i class="fab fa-apple"></i>
+                    <div>
+                        <div style="font-size: 0.75rem; opacity: 0.8;">Download on</div>
+                        <div style="font-size: 1.1rem; font-weight: 700;">App Store</div>
+                    </div>
+                </a>
+                <a href="#" class="app-button">
+                    <i class="fab fa-google-play"></i>
+                    <div>
+                        <div style="font-size: 0.75rem; opacity: 0.8;">Get it on</div>
+                        <div style="font-size: 1.1rem; font-weight: 700;">Google Play</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simplified Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+          
+                    <h3 class="footer-title">Budget Gadget</h3>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">Your trusted marketplace for buying, selling, and exchanging gadgets. Genuine products, fast delivery, best prices.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    
+                </div>
+             
+                <div class="col-lg-2 col-6 mb-4">
+                    <h4 class="footer-title">Help</h4>
+                    <ul class="footer-links">
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="track-order.html">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="refund.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <h4 class="footer-title">Download</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">iOS App</a></li>
+                        <li><a href="#">Android App</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Budget Gadget. All Rights Reserved. | Made with <i class="fas fa-heart" style="color: #ff7f00;"></i> in Kashmir</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 1000);
+        });
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-count'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current).toLocaleString();
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toLocaleString();
+                }
+            };
+
+            updateCounter();
+        }
+
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    const counter = entry.target.querySelector('[data-count]');
+                    if (counter && !counter.classList.contains('counted')) {
+                        counter.classList.add('counted');
+                        animateCounter(counter);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarCollapse.classList.remove('show');
+                    }
+                }
+            });
+        });
+
+        if (window.innerWidth > 768) {
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelector('.hero-section');
+                if (parallax) {
+                    parallax.style.transform = 'translateY(' + scrolled * 0.3 + 'px)';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
