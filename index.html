@@ -3,953 +3,486 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Budget Gadget — Kashmir's #1 Gadget Marketplace</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>BudgetGadget — Kashmir's Gadget Marketplace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-
 :root{
-  --orange:#ff7f00;
-  --orange2:#ff9933;
-  --black:#000;
-  --dark:#0a0a0a;
-  --dark2:#111;
+  --o:#F5700A;
+  --o2:#FF8C2A;
+  --od:rgba(245,112,10,.1);
+  --ob:rgba(245,112,10,.2);
+  --bg:#FAFAF8;
+  --bg2:#F3F1ED;
+  --ink:#111;
+  --mid:#555;
+  --dim:#999;
+  --line:#E8E5E0;
   --white:#fff;
-  --gray:#888;
-  --glass:rgba(255,255,255,0.04);
-  --glass-border:rgba(255,255,255,0.08);
+  --r:12px;
 }
-
 html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-body{
-  font-family:'Inter',-apple-system,sans-serif;
-  background:var(--dark);
-  color:var(--white);
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(250,250,248,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:.9rem 0}
+.nw{max-width:1080px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:.5rem;text-decoration:none}
+.logo-box{width:30px;height:30px;background:var(--o);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.logo-box svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.logo-name{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+.logo-name b{color:var(--o);font-weight:800}
+.nl{display:flex;align-items:center;gap:1.8rem}
+.nl a{font-size:.85rem;font-weight:500;color:var(--mid);text-decoration:none;transition:color .15s}
+.nl a:hover{color:var(--o)}
+.nav-btn{font-size:.82rem;font-weight:500;padding:.5rem 1.2rem;border-radius:50px;background:var(--o);color:#fff;text-decoration:none;transition:background .2s}
+.nav-btn:hover{background:var(--o2)}
 
-/* ─── LOADER ─────────────────────────────────────── */
-#loader{
-  position:fixed;inset:0;background:#000;z-index:9999;
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity .6s ease, visibility .6s ease;
-}
-#loader.gone{opacity:0;visibility:hidden}
-.loader-ring{
-  width:60px;height:60px;border-radius:50%;
-  border:3px solid rgba(255,127,0,.15);
-  border-top-color:var(--orange);
-  animation:spin 1s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* HERO */
+.hero{max-width:1080px;margin:0 auto;padding:5rem 1.5rem 4rem;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center}
+.h-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--o);background:var(--od);border:1px solid var(--ob);padding:.28rem .8rem;border-radius:4px;margin-bottom:1.4rem}
+.h-dot{width:5px;height:5px;border-radius:50%;background:var(--o)}
+h1{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:clamp(2.6rem,5vw,4.2rem);font-weight:800;letter-spacing:-.05em;line-height:.97;margin-bottom:1.4rem}
+h1 span{color:var(--o)}
+.h-sub{font-size:1.05rem;color:var(--mid);line-height:1.75;max-width:420px;margin-bottom:2rem}
+.h-btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:500;padding:.75rem 1.7rem;border-radius:50px;background:var(--o);color:#fff;text-decoration:none;transition:background .2s}
+.btn-p:hover{background:var(--o2)}
+.btn-s{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:500;padding:.75rem 1.5rem;border-radius:50px;background:var(--bg2);color:var(--ink);text-decoration:none;border:1px solid var(--line);transition:border-color .2s}
+.btn-s:hover{border-color:var(--o);color:var(--o)}
+.h-trust{display:flex;align-items:center;gap:1.2rem;margin-top:1.8rem;flex-wrap:wrap}
+.ht{font-size:.78rem;color:var(--dim);display:flex;align-items:center;gap:.3rem}
+.ht-star{color:var(--o)}
+.ht-sep{width:1px;height:12px;background:var(--line)}
 
-/* ─── CURSOR ──────────────────────────────────────── */
-.cursor{
-  width:12px;height:12px;border-radius:50%;background:var(--orange);
-  position:fixed;pointer-events:none;z-index:9998;
-  transform:translate(-50%,-50%);transition:transform .1s ease;
-  mix-blend-mode:difference;
-}
-.cursor-ring{
-  width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,127,0,.5);
-  position:fixed;pointer-events:none;z-index:9997;
-  transform:translate(-50%,-50%);
-  transition:all .15s ease;
-}
+/* Hero right: app badge stack */
+.hero-badges{display:flex;flex-direction:column;gap:1rem;width:200px}
+.h-badge{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.2rem;display:flex;align-items:center;gap:.75rem;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.hb-ico{font-size:1.6rem;flex-shrink:0}
+.hb-lbl{font-size:.72rem;color:var(--dim);text-transform:uppercase;letter-spacing:.07em}
+.hb-val{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:.95rem;font-weight:800;letter-spacing:-.02em}
+.hb-val.orange{color:var(--o)}
 
-/* ─── NAV ─────────────────────────────────────────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:1.2rem 0;
-  background:rgba(0,0,0,0);
-  backdrop-filter:blur(0px);
-  border-bottom:1px solid transparent;
-  transition:all .4s cubic-bezier(.4,0,.2,1);
-}
-nav.solid{
-  background:rgba(0,0,0,.85);
-  backdrop-filter:saturate(180%) blur(24px);
-  border-bottom-color:rgba(255,255,255,.06);
-  padding:.8rem 0;
-}
-.nav-inner{
-  max-width:1200px;margin:0 auto;padding:0 2rem;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.brand{
-  font-size:1.3rem;font-weight:800;letter-spacing:-.5px;
-  color:var(--white);text-decoration:none;
-  display:flex;align-items:center;gap:.5rem;
-}
-.brand-dot{color:var(--orange)}
-.nav-links{display:flex;align-items:center;gap:2.5rem}
-.nav-links a{
-  color:rgba(255,255,255,.75);font-size:.875rem;font-weight:500;
-  text-decoration:none;transition:color .2s;position:relative;
-}
-.nav-links a::after{
-  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
-  background:var(--orange);transition:width .3s ease;
-}
-.nav-links a:hover{color:#fff}
-.nav-links a:hover::after{width:100%}
-.nav-cta{
-  background:var(--orange);color:#fff;padding:.55rem 1.5rem;
-  border-radius:50px;font-size:.875rem;font-weight:600;
-  text-decoration:none;transition:all .3s ease;
-  box-shadow:0 0 20px rgba(255,127,0,0);
-}
-.nav-cta:hover{background:var(--orange2);box-shadow:0 0 30px rgba(255,127,0,.4);transform:translateY(-1px)}
+/* DIVIDER */
+.div-strip{background:var(--o);padding:.7rem 0;overflow:hidden}
+.ds-inner{display:flex;gap:3rem;width:max-content;animation:mq 18s linear infinite}
+.ds-item{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);white-space:nowrap}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ─── HERO ────────────────────────────────────────── */
-.hero{
-  min-height:100vh;display:flex;align-items:center;
-  position:relative;overflow:hidden;
-  padding:8rem 2rem 4rem;
-}
+/* SECTIONS */
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+.section{padding:5rem 0}
+.s-alt{background:var(--bg2)}
+.s-label{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--o);display:block;margin-bottom:.6rem}
+h2{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.04em;line-height:1.05}
+.s-body{font-size:.95rem;color:var(--mid);line-height:1.8;max-width:480px}
 
-/* Animated grid background */
-.hero-grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(255,127,0,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,127,0,.04) 1px, transparent 1px);
-  background-size:60px 60px;
-  animation:gridDrift 20s linear infinite;
-}
-@keyframes gridDrift{0%{transform:translate(0,0)}100%{transform:translate(60px,60px)}}
+/* HOW */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:3rem}
+.how-cell{background:var(--white);padding:2.2rem 2rem}
+.hc-num{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:2.5rem;font-weight:800;color:var(--od);letter-spacing:-.06em;line-height:1;margin-bottom:1rem}
+.hc-ico{font-size:1.6rem;margin-bottom:1rem;display:block}
+.hc-title{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:1rem;font-weight:800;margin-bottom:.5rem;letter-spacing:-.02em}
+.hc-desc{font-size:.85rem;color:var(--mid);line-height:1.75}
 
-/* Glowing orbs */
-.orb{
-  position:absolute;border-radius:50%;
-  filter:blur(80px);animation:breathe 6s ease-in-out infinite;pointer-events:none;
-}
-.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(255,127,0,.18),transparent 70%);top:-200px;right:-100px;animation-delay:0s}
-.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(255,127,0,.12),transparent 70%);bottom:-100px;left:-100px;animation-delay:3s}
-.orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(255,200,0,.08),transparent 70%);top:40%;left:30%;animation-delay:1.5s}
-@keyframes breathe{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.15) translate(20px,-20px)}}
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:3rem}
+.feat-cell{background:var(--bg2);padding:2rem;transition:background .2s}
+.feat-cell:hover{background:var(--white)}
+.fc-ico{width:40px;height:40px;border-radius:10px;background:var(--od);border:1px solid var(--ob);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.2rem}
+.fc-title{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:.95rem;font-weight:800;margin-bottom:.5rem;letter-spacing:-.02em}
+.fc-desc{font-size:.83rem;color:var(--mid);line-height:1.75}
 
-.hero-inner{
-  max-width:1200px;margin:0 auto;width:100%;
-  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:2;
-}
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:3rem}
+.stat{background:var(--white);padding:2rem 1.5rem;text-align:center}
+.stat-n{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:2.4rem;font-weight:800;letter-spacing:-.06em;color:var(--o);display:block;line-height:1}
+.stat-l{font-size:.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-top:.4rem;display:block}
 
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:.5rem;
-  background:rgba(255,127,0,.1);border:1px solid rgba(255,127,0,.25);
-  padding:.35rem 1rem;border-radius:50px;
-  font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--orange);margin-bottom:1.5rem;
-  animation:slideDown .8s cubic-bezier(.4,0,.2,1) .2s both;
-}
-.eyebrow-dot{
-  width:6px;height:6px;border-radius:50%;background:var(--orange);
-  animation:pulse 2s ease-in-out infinite;
-}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+/* BRANDS */
+.brands-wrap{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
+.br{font-size:.82rem;font-weight:500;padding:.45rem 1rem;border-radius:50px;background:var(--white);border:1px solid var(--line);color:var(--mid);transition:all .15s}
+.br:hover{border-color:var(--o);color:var(--o);background:var(--od)}
 
-h1{
-  font-size:clamp(2.8rem,5vw,5rem);font-weight:900;
-  line-height:1.0;letter-spacing:-2px;
-  animation:slideUp .9s cubic-bezier(.4,0,.2,1) .35s both;
-}
-h1 span{
-  background:linear-gradient(135deg,var(--orange),#ffb347,var(--orange));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;background-size:200% auto;
-  animation:shimmer 3s linear infinite;
-}
-@keyframes shimmer{0%{background-position:0% center}100%{background-position:200% center}}
+/* PROMISE */
+.promise-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;margin-top:3rem}
+.p-list{display:flex;flex-direction:column;gap:.75rem}
+.p-card{display:flex;gap:1rem;align-items:flex-start;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:1.4rem;transition:border-color .2s}
+.p-card:hover{border-color:var(--o)}
+.p-ico{font-size:1.4rem;flex-shrink:0;margin-top:1px}
+.p-title{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:.9rem;font-weight:800;margin-bottom:.3rem;letter-spacing:-.02em}
+.p-desc{font-size:.82rem;color:var(--mid);line-height:1.7}
+.metrics{display:flex;flex-direction:column;gap:.75rem}
+.metric{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:1.4rem 1.6rem;transition:border-color .2s}
+.metric:hover{border-color:var(--o)}
+.mv{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:2rem;font-weight:800;color:var(--o);letter-spacing:-.04em;line-height:1}
+.ml{font-size:.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-top:.25rem}
 
-.hero-sub{
-  font-size:1.1rem;color:rgba(255,255,255,.65);line-height:1.75;
-  margin:1.5rem 0 2.5rem;font-weight:400;
-  animation:slideUp .9s cubic-bezier(.4,0,.2,1) .5s both;
-}
+/* TESTIMONIALS */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem}
+.tcard{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:1.6rem;transition:border-color .2s}
+.tcard:hover{border-color:var(--o)}
+.t-stars{color:var(--o);font-size:.8rem;margin-bottom:.9rem}
+.t-text{font-size:.85rem;color:var(--mid);line-height:1.75;margin-bottom:1.2rem}
+.t-auth{display:flex;align-items:center;gap:.6rem}
+.t-av{width:34px;height:34px;border-radius:50%;background:var(--od);border:2px solid var(--ob);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.t-name{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:.85rem;font-weight:800;letter-spacing:-.02em}
+.t-loc{font-size:.72rem;color:var(--dim)}
 
-.hero-btns{
-  display:flex;gap:1rem;flex-wrap:wrap;
-  animation:slideUp .9s cubic-bezier(.4,0,.2,1) .65s both;
-}
-.btn-primary{
-  background:var(--orange);color:#fff;
-  padding:.9rem 2.2rem;border-radius:50px;
-  font-weight:700;font-size:.95rem;text-decoration:none;
-  transition:all .3s ease;
-  box-shadow:0 4px 20px rgba(255,127,0,.3);
-  position:relative;overflow:hidden;
-}
-.btn-primary::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.2) 50%,transparent 70%);
-  transform:translateX(-100%);transition:transform .5s ease;
-}
-.btn-primary:hover::before{transform:translateX(100%)}
-.btn-primary:hover{background:var(--orange2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,127,0,.5);color:#fff}
+/* CTA */
+.cta-section{background:var(--o);padding:5rem 0;text-align:center}
+.cta-section h2{color:#fff;font-size:clamp(2rem,4vw,3rem)}
+.cta-section p{color:rgba(255,255,255,.8);margin:.75rem auto 2.5rem;max-width:460px;font-size:.95rem;line-height:1.75}
+.dl-row{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.dl-b{display:inline-flex;align-items:center;gap:.75rem;background:#fff;border-radius:12px;padding:.9rem 1.6rem;text-decoration:none;color:var(--ink);transition:transform .2s,box-shadow .2s}
+.dl-b:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.dl-ico{font-size:1.8rem}
+.dl-sm{font-size:.65rem;color:var(--mid);text-transform:uppercase;letter-spacing:.07em}
+.dl-lg{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:1rem;font-weight:800;letter-spacing:-.02em}
+.cta-stars{margin-top:2rem;font-size:.8rem;color:rgba(255,255,255,.7)}
+.cta-stars b{color:#fff}
 
-.btn-ghost{
-  background:rgba(255,255,255,.05);color:#fff;
-  padding:.9rem 2.2rem;border-radius:50px;
-  font-weight:600;font-size:.95rem;text-decoration:none;
-  border:1px solid rgba(255,255,255,.12);
-  transition:all .3s ease;
-}
-.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);transform:translateY(-2px);color:#fff}
+/* FOOTER */
+footer{background:#111;padding:4rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.f-brand{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:.75rem;letter-spacing:-.03em}
+.f-brand b{color:var(--o)}
+.f-tag{font-size:.83rem;color:#777;line-height:1.7;margin-bottom:1.2rem}
+.socials{display:flex;gap:.5rem}
+.soc{width:32px;height:32px;border-radius:50%;background:#222;border:1px solid #333;display:flex;align-items:center;justify-content:center;text-decoration:none;color:#777;font-size:.75rem;transition:all .2s}
+.soc:hover{background:var(--o);border-color:var(--o);color:#fff}
+.fcol h4{font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:#777;margin-bottom:1rem}
+.fcol ul{list-style:none}
+.fcol li{margin-bottom:.5rem}
+.fcol a{font-size:.83rem;color:#666;text-decoration:none;transition:color .15s}
+.fcol a:hover{color:var(--o)}
+.fbot{border-top:1px solid #222;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:#555}
+.fbot b{color:var(--o)}
 
-/* Hero trust badges */
-.hero-trust{
-  display:flex;align-items:center;gap:1.5rem;margin-top:2.5rem;
-  animation:slideUp .9s cubic-bezier(.4,0,.2,1) .8s both;
-}
-.trust-item{
-  display:flex;align-items:center;gap:.4rem;
-  font-size:.8rem;color:rgba(255,255,255,.55);
-}
-.trust-icon{color:var(--orange);font-size:.9rem}
-.trust-div{width:1px;height:16px;background:rgba(255,255,255,.12)}
+/* BACK TOP */
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;width:40px;height:40px;border-radius:50%;background:var(--o);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .2s;box-shadow:0 4px 12px rgba(245,112,10,.35);z-index:200}
+.btt.v{opacity:1;visibility:visible}
+.btt:hover{background:var(--o2);transform:translateY(-2px)}
 
-/* Phone visual */
-.hero-visual{
-  position:relative;display:flex;justify-content:center;align-items:center;
-  animation:slideRight .9s cubic-bezier(.4,0,.2,1) .4s both;
-}
-@keyframes slideRight{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
-@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
-
-.phone-wrap{
-  position:relative;
-  animation:floatY 4s ease-in-out infinite;
-}
-@keyframes floatY{0%,100%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(-24px) rotate(-1deg)}}
-
-.phone-glow{
-  position:absolute;inset:-40px;
-  background:radial-gradient(ellipse at center,rgba(255,127,0,.25),transparent 70%);
-  animation:breathe 4s ease-in-out infinite;z-index:0;
-}
-
-/* Floating cards around phone */
-.float-card{
-  position:absolute;
-  background:rgba(255,255,255,.06);
-  backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:16px;padding:.8rem 1.2rem;
-  font-size:.8rem;font-weight:600;
-  white-space:nowrap;z-index:10;
-  box-shadow:0 8px 32px rgba(0,0,0,.3);
-}
-.fc1{top:10%;right:-5%;animation:floatCard1 5s ease-in-out infinite}
-.fc2{bottom:20%;left:-10%;animation:floatCard2 6s ease-in-out infinite}
-.fc3{top:50%;right:-8%;animation:floatCard3 4.5s ease-in-out infinite}
-@keyframes floatCard1{0%,100%{transform:translate(0,0)}50%{transform:translate(8px,-12px)}}
-@keyframes floatCard2{0%,100%{transform:translate(0,0)}50%{transform:translate(-8px,10px)}}
-@keyframes floatCard3{0%,100%{transform:translate(0,0)}50%{transform:translate(10px,8px)}}
-
-.fc-orange{color:var(--orange)}
-.fc-green{color:#4ade80}
-
-/* ─── MARQUEE ─────────────────────────────────────── */
-.marquee-section{
-  padding:2.5rem 0;
-  background:rgba(255,127,0,.04);
-  border-top:1px solid rgba(255,127,0,.1);
-  border-bottom:1px solid rgba(255,127,0,.1);
-  overflow:hidden;position:relative;z-index:5;
-}
-.marquee-track{
-  display:flex;gap:4rem;
-  animation:marquee 20s linear infinite;
-  width:max-content;
-}
-.marquee-item{
-  display:flex;align-items:center;gap:.75rem;
-  font-size:.875rem;font-weight:600;color:rgba(255,255,255,.4);
-  letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;
-}
-.marquee-item svg{color:var(--orange);opacity:.6}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ─── STATS ───────────────────────────────────────── */
-.stats{
-  padding:7rem 2rem;position:relative;overflow:hidden;
-  background:linear-gradient(180deg,var(--dark) 0%,#0d0d0d 100%);
-}
-.stats-inner{max-width:1200px;margin:0 auto}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:1rem}
-.stat-box{
-  position:relative;padding:3rem 2rem;text-align:center;
-  background:var(--glass);
-  border:1px solid var(--glass-border);
-  overflow:hidden;
-  transition:all .4s ease;
-}
-.stat-box::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 0%,rgba(255,127,0,.08),transparent 60%);
-  opacity:0;transition:opacity .4s ease;
-}
-.stat-box:hover::before{opacity:1}
-.stat-box:hover{border-color:rgba(255,127,0,.2);transform:translateY(-4px)}
-.stat-num{
-  font-size:3.5rem;font-weight:900;letter-spacing:-2px;
-  background:linear-gradient(135deg,#fff,rgba(255,255,255,.6));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  display:block;margin-bottom:.5rem;
-}
-.stat-num .accent{
-  background:linear-gradient(135deg,var(--orange),var(--orange2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.stat-lbl{font-size:.875rem;color:rgba(255,255,255,.45);font-weight:500;letter-spacing:.03em}
-
-/* ─── SECTION COMMON ──────────────────────────────── */
-.section{padding:8rem 2rem;position:relative}
-.section-inner{max-width:1200px;margin:0 auto}
-.section-label{
-  display:inline-block;
-  font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--orange);margin-bottom:1rem;
-}
-.section-title{
-  font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-1px;
-  line-height:1.1;margin-bottom:1rem;
-}
-.section-body{
-  font-size:1.05rem;color:rgba(255,255,255,.55);line-height:1.8;
-  max-width:500px;
-}
-
-/* ─── FEATURES ────────────────────────────────────── */
-.features-bg{background:linear-gradient(180deg,#0d0d0d,#000)}
-.features-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;
-  margin-top:5rem;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:24px;overflow:hidden;
-}
-.feat{
-  padding:3rem 2.5rem;background:var(--dark);
-  position:relative;overflow:hidden;
-  transition:all .4s cubic-bezier(.4,0,.2,1);
-}
-.feat::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,127,0,.1),transparent 60%);
-  opacity:0;transition:opacity .4s;
-}
-.feat:hover::after{opacity:1}
-.feat:hover{background:#0e0e0e;transform:scale(1.01)}
-
-.feat-icon{
-  width:52px;height:52px;border-radius:14px;
-  background:rgba(255,127,0,.1);border:1px solid rgba(255,127,0,.2);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:1.5rem;transition:all .4s ease;
-}
-.feat:hover .feat-icon{background:rgba(255,127,0,.2);transform:scale(1.1) rotate(-5deg)}
-.feat-icon svg{width:22px;height:22px;stroke:var(--orange);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-
-.feat-title{font-size:1.1rem;font-weight:700;margin-bottom:.75rem}
-.feat-desc{font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.75}
-
-/* ─── HOW IT WORKS ────────────────────────────────── */
-.how-bg{background:var(--dark)}
-.steps{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:0;margin-top:5rem;position:relative;
-}
-.steps::before{
-  content:'';position:absolute;top:35px;left:12%;right:12%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,127,0,.3) 20%,rgba(255,127,0,.3) 80%,transparent);
-  z-index:0;
-}
-.step{
-  padding:2rem 1.5rem;text-align:center;position:relative;z-index:1;
-}
-.step-badge{
-  width:70px;height:70px;border-radius:50%;
-  background:linear-gradient(135deg,var(--orange),#ff5500);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.5rem;font-weight:900;margin:0 auto 1.5rem;
-  position:relative;transition:all .4s ease;
-  box-shadow:0 0 0 0 rgba(255,127,0,.4);
-}
-.step:hover .step-badge{
-  transform:scale(1.15);
-  box-shadow:0 0 0 12px rgba(255,127,0,.15),0 0 30px rgba(255,127,0,.3);
-}
-.step-badge::after{
-  content:'';position:absolute;inset:-4px;border-radius:50%;
-  border:2px dashed rgba(255,127,0,.3);
-  animation:rotateRing 8s linear infinite;
-}
-@keyframes rotateRing{to{transform:rotate(360deg)}}
-
-.step-title{font-size:1rem;font-weight:700;margin-bottom:.5rem}
-.step-desc{font-size:.825rem;color:rgba(255,255,255,.45);line-height:1.7}
-
-/* ─── USP / PROMISE ───────────────────────────────── */
-.promise-bg{
-  background:linear-gradient(135deg,#000 0%,#0a0a0a 100%);
-  overflow:hidden;position:relative;
-}
-.promise-bg::before{
-  content:'';position:absolute;
-  width:800px;height:800px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,127,0,.06),transparent 70%);
-  top:-400px;right:-400px;pointer-events:none;
-}
-
-.promise-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
-.promise-cards{display:flex;flex-direction:column;gap:1.5rem}
-.p-card{
-  display:flex;gap:1.5rem;align-items:flex-start;
-  padding:2rem;border-radius:20px;
-  background:var(--glass);border:1px solid var(--glass-border);
-  transition:all .4s ease;position:relative;overflow:hidden;
-}
-.p-card::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:linear-gradient(180deg,var(--orange),transparent);
-  transform:scaleY(0);transform-origin:top;
-  transition:transform .4s ease;
-}
-.p-card:hover::before{transform:scaleY(1)}
-.p-card:hover{border-color:rgba(255,127,0,.2);background:rgba(255,127,0,.04);transform:translateX(6px)}
-
-.p-icon{
-  width:48px;height:48px;border-radius:12px;
-  background:rgba(255,127,0,.1);border:1px solid rgba(255,127,0,.15);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.4rem;
-}
-.p-title{font-size:1rem;font-weight:700;margin-bottom:.4rem}
-.p-desc{font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.7}
-
-/* Shield SVG visual */
-.shield-wrap{
-  position:relative;display:flex;justify-content:center;align-items:center;
-}
-.shield-bg{
-  width:320px;height:320px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,127,0,.08),transparent 70%);
-  animation:breathe 5s ease-in-out infinite;
-  display:flex;align-items:center;justify-content:center;
-}
-.shield-svg{filter:drop-shadow(0 0 40px rgba(255,127,0,.35))}
-.orbit{
-  position:absolute;border-radius:50%;
-  border:1px dashed rgba(255,127,0,.15);animation:orbitSpin 12s linear infinite;
-}
-.orbit1{width:260px;height:260px}
-.orbit2{width:360px;height:360px;animation-direction:reverse;animation-duration:18s}
-.orbit-dot{
-  width:8px;height:8px;border-radius:50%;background:var(--orange);
-  position:absolute;top:-4px;left:50%;transform:translateX(-50%);
-}
-
-/* ─── DOWNLOAD CTA ────────────────────────────────── */
-.cta-section{
-  padding:8rem 2rem;
-  background:linear-gradient(135deg,#0a0a0a 0%,#111 100%);
-  position:relative;overflow:hidden;text-align:center;
-}
-.cta-section::before{
-  content:'';position:absolute;
-  width:900px;height:900px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,127,0,.07),transparent 60%);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  animation:breathe 8s ease-in-out infinite;
-}
-.cta-inner{position:relative;z-index:2;max-width:700px;margin:0 auto}
-
-.cta-badge{
-  display:inline-flex;align-items:center;gap:.5rem;
-  background:rgba(255,127,0,.1);border:1px solid rgba(255,127,0,.2);
-  padding:.4rem 1.2rem;border-radius:50px;
-  font-size:.75rem;font-weight:600;color:var(--orange);
-  letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem;
-}
-.cta-title{
-  font-size:clamp(2.5rem,5vw,4rem);font-weight:900;letter-spacing:-2px;
-  line-height:1.05;margin-bottom:1.5rem;
-}
-.cta-sub{font-size:1.05rem;color:rgba(255,255,255,.55);margin-bottom:3.5rem;line-height:1.7}
-
-.dl-buttons{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
-.dl-btn{
-  display:inline-flex;align-items:center;gap:1rem;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.12);
-  padding:1.2rem 2.2rem;border-radius:18px;
-  text-decoration:none;color:#fff;
-  transition:all .4s cubic-bezier(.4,0,.2,1);
-  position:relative;overflow:hidden;
-}
-.dl-btn::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,127,0,.15),transparent);
-  opacity:0;transition:opacity .4s;
-}
-.dl-btn:hover::before{opacity:1}
-.dl-btn:hover{
-  border-color:rgba(255,127,0,.4);
-  transform:translateY(-5px);
-  box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 30px rgba(255,127,0,.15);
-  color:#fff;
-}
-.dl-icon{font-size:2.4rem;line-height:1}
-.dl-text-sm{font-size:.7rem;opacity:.6;letter-spacing:.05em;margin-bottom:2px}
-.dl-text-lg{font-size:1.1rem;font-weight:700}
-
-.rating-row{
-  display:flex;align-items:center;justify-content:center;gap:.5rem;
-  margin-top:3rem;font-size:.85rem;color:rgba(255,255,255,.4);
-}
-.stars{color:var(--orange);letter-spacing:1px}
-
-/* ─── FOOTER ──────────────────────────────────────── */
-footer{
-  background:#000;border-top:1px solid rgba(255,255,255,.06);
-  padding:4rem 2rem 2rem;
-}
-.footer-inner{max-width:1200px;margin:0 auto}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
-
-.footer-brand{font-size:1.3rem;font-weight:800;letter-spacing:-.5px;margin-bottom:1rem}
-.footer-tagline{font-size:.875rem;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:1.5rem}
-.socials{display:flex;gap:.75rem}
-.social-btn{
-  width:38px;height:38px;border-radius:50%;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:center;
-  text-decoration:none;color:rgba(255,255,255,.6);font-size:.9rem;
-  transition:all .3s ease;
-}
-.social-btn:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-3px)}
-
-.footer-col h4{font-size:.875rem;font-weight:700;margin-bottom:1.2rem;color:rgba(255,255,255,.8)}
-.footer-col ul{list-style:none}
-.footer-col li{margin-bottom:.7rem}
-.footer-col a{
-  font-size:.85rem;color:rgba(255,255,255,.4);text-decoration:none;
-  transition:all .2s;display:inline-block;
-}
-.footer-col a:hover{color:var(--orange);transform:translateX(4px)}
-
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,.06);padding-top:2rem;
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:.8rem;color:rgba(255,255,255,.25);
-}
-.footer-bottom span{color:var(--orange)}
-
-/* ─── SCROLL TO TOP ───────────────────────────────── */
-.back-top{
-  position:fixed;bottom:2rem;right:2rem;z-index:200;
-  width:46px;height:46px;border-radius:50%;
-  background:var(--orange);color:#fff;border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;visibility:hidden;
-  transition:all .3s ease;
-  box-shadow:0 4px 20px rgba(255,127,0,.4);
-}
-.back-top.show{opacity:1;visibility:visible}
-.back-top:hover{background:var(--orange2);transform:translateY(-3px)}
-
-/* ─── SCROLL REVEAL ───────────────────────────────── */
-.reveal{
-  opacity:0;transform:translateY(40px);
-  transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
-}
-.reveal.in{opacity:1;transform:translateY(0)}
-.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1)}
-.reveal-left.in{opacity:1;transform:translateX(0)}
-.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1)}
-.reveal-right.in{opacity:1;transform:translateX(0)}
-
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
-.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
-
-/* ─── RESPONSIVE ──────────────────────────────────── */
-@media(max-width:1024px){
-  .features-grid{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:2.5rem}
-}
-@media(max-width:768px){
-  .hero-inner{grid-template-columns:1fr;text-align:center}
-  .hero-trust{justify-content:center;flex-wrap:wrap}
-  .hero-btns{justify-content:center}
-  .hero-visual{margin-top:3rem}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .features-grid{grid-template-columns:1fr}
-  .steps{grid-template-columns:repeat(2,1fr)}
-  .steps::before{display:none}
+/* RESPONSIVE */
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;gap:2.5rem}
+  .hero-badges{flex-direction:row;width:auto;flex-wrap:wrap}
+  .h-badge{flex:1;min-width:140px}
+  .how-grid,.feat-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
   .promise-grid{grid-template-columns:1fr}
-  .shield-wrap{display:none}
-  .footer-grid{grid-template-columns:1fr;gap:2rem}
-  .footer-bottom{flex-direction:column;gap:.5rem;text-align:center}
-  .nav-links{display:none}
-  .float-card{display:none}
-  .dl-buttons{flex-direction:column;align-items:center}
+  .test-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .fbot{flex-direction:column;gap:.5rem;text-align:center}
+  .nl{display:none}
 }
 @media(max-width:480px){
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .steps{grid-template-columns:1fr}
-}
-
-/* ─── PARTICLE CANVAS ─────────────────────────────── */
-#particles{position:absolute;inset:0;pointer-events:none;z-index:1}
-
-/* ─── NOISE TEXTURE ───────────────────────────────── */
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:0;opacity:.4;
-}
-
-/* ─── PROGRESS BAR ────────────────────────────────── */
-#progress{
-  position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--orange),var(--orange2));
-  z-index:9999;width:0;transition:width .1s linear;
+  .stats-row{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .dl-row{flex-direction:column;align-items:center}
 }
 </style>
 </head>
 <body>
 
-<div id="progress"></div>
-
-<!-- LOADER -->
-<div id="loader"><div class="loader-ring"></div></div>
-
-<!-- CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- NAV -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="#" class="brand">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff7f00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-      Budget<span class="brand-dot">Gadget</span>
+<nav>
+  <div class="nw">
+    <a href="#" class="logo">
+      <div class="logo-box">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <span class="logo-name">Budget<b>Gadget</b></span>
     </a>
-    <div class="nav-links">
-      <a href="#features">Features</a>
+    <div class="nl">
       <a href="#how">How It Works</a>
-      <a href="#promise">Our Promise</a>
+      <a href="#features">Features</a>
       <a href="#download">Download</a>
     </div>
-    <a href="#download" class="nav-cta">Get the App</a>
+    <a href="#download" class="nav-btn">Get the App</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
-  <canvas id="particles"></canvas>
-  <div class="hero-grid"></div>
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Kashmir's #1 Gadget App</div>
+<div style="max-width:1080px;margin:0 auto;padding:0 1.5rem">
+  <div class="hero" style="padding:5rem 0 4rem">
+    <div>
+      <div class="h-tag"><span class="h-dot"></span>Kashmir's #1 Gadget App</div>
       <h1>Sell. Buy.<br><span>Exchange.</span><br>Instantly.</h1>
-      <p class="hero-sub">Get the best value for your old devices. Buy certified gadgets with 1-day delivery. 100% genuine, warranty guaranteed — right from your phone.</p>
-      <div class="hero-btns">
-        <a href="#download" class="btn-primary">Download Free App</a>
-        <a href="#how" class="btn-ghost">See How It Works</a>
+      <p class="h-sub">Get the best price for your old device, or find your next gadget at a fraction of the cost. Doorstep pickup, instant cash — Kashmir-built, Kashmir-trusted.</p>
+      <div class="h-btns">
+        <a href="#download" class="btn-p">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 16l-5-5 1.4-1.4 2.6 2.6V4h2v8.2l2.6-2.6L17 11l-5 5z"/><path d="M5 20h14"/></svg>
+          Download Free
+        </a>
+        <a href="#how" class="btn-s">How It Works →</a>
       </div>
-      <div class="hero-trust">
-        <div class="trust-item"><span class="trust-icon">✦</span> 50K+ Customers</div>
-        <div class="trust-div"></div>
-        <div class="trust-item"><span class="trust-icon">✦</span> 4.8★ Rating</div>
-        <div class="trust-div"></div>
-        <div class="trust-item"><span class="trust-icon">✦</span> 24/7 Support</div>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="phone-glow"></div>
-      <div class="phone-wrap">
-        <!-- Floating cards -->
-        <div class="float-card fc1"><span class="fc-green">✓</span> Just Sold: iPhone 13 — <strong>₹32,000</strong></div>
-        <div class="float-card fc2">⚡ 1-Day Delivery <span class="fc-orange">Guaranteed</span></div>
-        <div class="float-card fc3">🛡 7-Day Warranty Check</div>
-        <!-- Phone SVG -->
-        <svg width="280" height="520" viewBox="0 0 280 520" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:2;filter:drop-shadow(0 40px 80px rgba(255,127,0,.25))">
-          <!-- Body -->
-          <rect x="10" y="8" width="260" height="504" rx="36" fill="#111" stroke="#ff7f00" stroke-width="1.5"/>
-          <rect x="18" y="16" width="244" height="488" rx="30" fill="#1a1a1a"/>
-          <!-- Screen -->
-          <rect x="22" y="20" width="236" height="480" rx="26" fill="#0e0e0e"/>
-          <!-- Notch -->
-          <rect x="100" y="24" width="80" height="18" rx="9" fill="#111"/>
-          <!-- Status bar dots -->
-          <circle cx="116" cy="33" r="4" fill="#333"/>
-          <circle cx="140" cy="33" r="5" fill="#ff7f00" opacity=".9">
-            <animate attributeName="opacity" values=".9;.4;.9" dur="2s" repeatCount="indefinite"/>
-          </circle>
-          <circle cx="164" cy="33" r="4" fill="#333"/>
-          <!-- Header bar -->
-          <rect x="28" y="50" width="224" height="50" rx="12" fill="#111"/>
-          <text x="50" y="81" font-family="Inter,sans-serif" font-size="14" font-weight="700" fill="white">Budget Gadget</text>
-          <rect x="200" y="63" width="44" height="24" rx="6" fill="#ff7f00"/>
-          <text x="209" y="79" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="white">Sell</text>
-          <!-- Search bar -->
-          <rect x="28" y="112" width="224" height="36" rx="18" fill="#222"/>
-          <circle cx="50" cy="130" r="8" fill="none" stroke="#555" stroke-width="1.5"/>
-          <line x1="55" y1="135" x2="60" y2="140" stroke="#555" stroke-width="1.5" stroke-linecap="round"/>
-          <text x="68" y="135" font-family="Inter,sans-serif" font-size="11" fill="#555">Search gadgets...</text>
-          <!-- Category pills -->
-          <rect x="28" y="160" width="64" height="26" rx="13" fill="#ff7f00"/>
-          <text x="48" y="177" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="white" text-anchor="middle">All</text>
-          <rect x="100" y="160" width="70" height="26" rx="13" fill="#222"/>
-          <text x="135" y="177" font-family="Inter,sans-serif" font-size="10" fill="#888" text-anchor="middle">Phones</text>
-          <rect x="178" y="160" width="74" height="26" rx="13" fill="#222"/>
-          <text x="215" y="177" font-family="Inter,sans-serif" font-size="10" fill="#888" text-anchor="middle">Laptops</text>
-          <!-- Device card 1 -->
-          <rect x="28" y="198" width="106" height="130" rx="16" fill="#1e1e1e"/>
-          <rect x="36" y="206" width="90" height="70" rx="10" fill="#2a2a2a"/>
-          <!-- iPhone icon -->
-          <rect x="55" y="216" width="50" height="50" rx="10" fill="#333"/>
-          <rect x="62" y="222" width="36" height="38" rx="6" fill="#444"/>
-          <text x="71" y="246" font-family="Inter,sans-serif" font-size="16">📱</text>
-          <text x="40" y="292" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="white">iPhone 13</text>
-          <text x="40" y="306" font-family="Inter,sans-serif" font-size="9" fill="#ff7f00" font-weight="700">₹32,000</text>
-          <rect x="40" y="314" width="82" height="8" rx="4" fill="#ff7f00" opacity=".15"/>
-          <rect x="40" y="314" width="60" height="8" rx="4" fill="#ff7f00" opacity=".5"/>
-          <!-- Device card 2 -->
-          <rect x="146" y="198" width="106" height="130" rx="16" fill="#1e1e1e"/>
-          <rect x="154" y="206" width="90" height="70" rx="10" fill="#2a2a2a"/>
-          <rect x="172" y="216" width="52" height="50" rx="6" fill="#333"/>
-          <rect x="178" y="222" width="40" height="38" rx="4" fill="#444"/>
-          <text x="186" y="246" font-family="Inter,sans-serif" font-size="16">💻</text>
-          <text x="158" y="292" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="white">MacBook Air</text>
-          <text x="158" y="306" font-family="Inter,sans-serif" font-size="9" fill="#ff7f00" font-weight="700">₹78,500</text>
-          <rect x="158" y="314" width="82" height="8" rx="4" fill="#ff7f00" opacity=".15"/>
-          <rect x="158" y="314" width="45" height="8" rx="4" fill="#ff7f00" opacity=".5"/>
-          <!-- Bottom nav -->
-          <rect x="28" y="450" width="224" height="46" rx="16" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
-          <text x="66" y="479" font-family="Inter,sans-serif" font-size="16" text-anchor="middle">🏠</text>
-          <text x="112" y="479" font-family="Inter,sans-serif" font-size="16" text-anchor="middle">🔍</text>
-          <text x="158" y="479" font-family="Inter,sans-serif" font-size="16" text-anchor="middle">💰</text>
-          <text x="204" y="479" font-family="Inter,sans-serif" font-size="16" text-anchor="middle">👤</text>
-          <!-- Home indicator -->
-          <rect x="100" y="500" width="80" height="4" rx="2" fill="#444"/>
-        </svg>
+      <div class="h-trust">
+        <div class="ht"><span class="ht-star">★</span> 50K+ Customers</div>
+        <div class="ht-sep"></div>
+        <div class="ht"><span class="ht-star">★</span> 4.8 Rating</div>
+        <div class="ht-sep"></div>
+        <div class="ht"><span class="ht-star">★</span> 24/7 Support</div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-track" id="marqueeTrack">
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>100% Genuine Products
-    </div>
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>1-Day Delivery Guaranteed
-    </div>
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>7-Day Warranty Check
-    </div>
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>50,000+ Happy Customers
-    </div>
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Instant Cash Payments
-    </div>
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Made in Kashmir ❤
-    </div>
-    <!-- Duplicate for seamless loop -->
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>100% Genuine Products
-    </div>
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>1-Day Delivery Guaranteed
-    </div>
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>7-Day Warranty Check
-    </div>
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>50,000+ Happy Customers
-    </div>
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Instant Cash Payments
-    </div>
-    <div class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Made in Kashmir ❤
+    <div class="hero-badges">
+      <div class="h-badge">
+        <div class="hb-ico">💸</div>
+        <div>
+          <div class="hb-lbl">Paid to Sellers</div>
+          <div class="hb-val orange">₹12 Cr+</div>
+        </div>
+      </div>
+      <div class="h-badge">
+        <div class="hb-ico">📱</div>
+        <div>
+          <div class="hb-lbl">Devices Traded</div>
+          <div class="hb-val orange">1 Lakh+</div>
+        </div>
+      </div>
+      <div class="h-badge">
+        <div class="hb-ico">⚡</div>
+        <div>
+          <div class="hb-lbl">Pickup Time</div>
+          <div class="hb-val">Same Day</div>
+        </div>
+      </div>
+      <div class="h-badge">
+        <div class="hb-ico">🛡</div>
+        <div>
+          <div class="hb-lbl">Warranty Check</div>
+          <div class="hb-val">7 Days</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- ORANGE STRIP -->
+<div class="div-strip">
+  <div class="ds-inner">
+    <span class="ds-item">◆ 100% Genuine</span>
+    <span class="ds-item">◆ Same-Day Pickup</span>
+    <span class="ds-item">◆ Instant UPI Payment</span>
+    <span class="ds-item">◆ 7-Day Warranty</span>
+    <span class="ds-item">◆ 50K+ Customers</span>
+    <span class="ds-item">◆ Free Doorstep Pickup</span>
+    <span class="ds-item">◆ Made in Kashmir ♥</span>
+    <span class="ds-item">◆ 32-Point Inspection</span>
+    <span class="ds-item">◆ 100% Genuine</span>
+    <span class="ds-item">◆ Same-Day Pickup</span>
+    <span class="ds-item">◆ Instant UPI Payment</span>
+    <span class="ds-item">◆ 7-Day Warranty</span>
+    <span class="ds-item">◆ 50K+ Customers</span>
+    <span class="ds-item">◆ Free Doorstep Pickup</span>
+    <span class="ds-item">◆ Made in Kashmir ♥</span>
+    <span class="ds-item">◆ 32-Point Inspection</span>
+  </div>
+</div>
+
 <!-- STATS -->
-<section class="stats">
-  <div class="stats-inner">
-    <p class="section-label reveal">By the Numbers</p>
-    <div class="stats-grid">
-      <div class="stat-box reveal d1">
-        <span class="stat-num"><span class="accent counter" data-target="50000">0</span><span class="accent">+</span></span>
-        <span class="stat-lbl">Happy Customers</span>
+<section class="section">
+  <div class="wrap">
+    <span class="s-label">By the Numbers</span>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-n">50K+</span><span class="stat-l">Happy Customers</span></div>
+      <div class="stat"><span class="stat-n">1L+</span><span class="stat-l">Devices Traded</span></div>
+      <div class="stat"><span class="stat-n">4.8★</span><span class="stat-l">App Rating</span></div>
+      <div class="stat"><span class="stat-n">24/7</span><span class="stat-l">Support</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section s-alt" id="how">
+  <div class="wrap">
+    <span class="s-label">The Process</span>
+    <h2>Sell or buy in 3 steps.</h2>
+    <div class="how-grid">
+      <div class="how-cell">
+        <div class="hc-num">01</div>
+        <span class="hc-ico">🔍</span>
+        <h3 class="hc-title">Select Your Device</h3>
+        <p class="hc-desc">Search your phone model and pick the condition — Excellent, Good, or Fair. Takes 30 seconds in the app.</p>
       </div>
-      <div class="stat-box reveal d2">
-        <span class="stat-num"><span class="accent counter" data-target="100000">0</span><span class="accent">+</span></span>
-        <span class="stat-lbl">Devices Traded</span>
+      <div class="how-cell">
+        <div class="hc-num">02</div>
+        <span class="hc-ico">⚡</span>
+        <h3 class="hc-title">Get an Instant Quote</h3>
+        <p class="hc-desc">Our pricing engine gives you a transparent offer based on live market rates across Kashmir. No haggling.</p>
       </div>
-      <div class="stat-box reveal d3">
-        <span class="stat-num"><span class="accent">4.8</span><span style="font-size:2rem;color:var(--orange)">★</span></span>
-        <span class="stat-lbl">App Store Rating</span>
-      </div>
-      <div class="stat-box reveal d4">
-        <span class="stat-num"><span class="accent">24</span><span class="accent">/7</span></span>
-        <span class="stat-lbl">Customer Support</span>
+      <div class="how-cell">
+        <div class="hc-num">03</div>
+        <span class="hc-ico">💸</span>
+        <h3 class="hc-title">Pickup & Get Paid</h3>
+        <p class="hc-desc">We come to your door. Our agent verifies the device and transfers cash instantly to your UPI or bank.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section class="section features-bg" id="features">
-  <div class="section-inner">
-    <div style="text-align:center;margin-bottom:1rem">
-      <p class="section-label reveal">Why Budget Gadget</p>
-      <h2 class="section-title reveal">Everything you need,<br>nothing you don't.</h2>
-      <p class="section-body reveal" style="margin:0 auto;text-align:center">We built the marketplace Kashmir deserved — fast, trusted, and completely transparent.</p>
-    </div>
-    <div class="features-grid">
-      <div class="feat reveal d1" id="feat1">
-        <div class="feat-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3 class="feat-title">100% Genuine Products</h3>
-        <p class="feat-desc">Every device passes a rigorous 32-point quality inspection. Zero counterfeits, full authenticity guaranteed.</p>
+<section class="section" id="features">
+  <div class="wrap">
+    <span class="s-label">Why Budget Gadget</span>
+    <h2>Built for Kashmir.<br>Built to last.</h2>
+    <div class="feat-grid">
+      <div class="feat-cell">
+        <div class="fc-ico">🛡</div>
+        <h3 class="fc-title">32-Point Inspection</h3>
+        <p class="fc-desc">Every device is physically verified by our trained agents — screen, battery, IMEI, internals — before any deal is confirmed.</p>
       </div>
-      <div class="feat reveal d2">
-        <div class="feat-icon">
-          <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-        </div>
-        <h3 class="feat-title">1-Day Delivery</h3>
-        <p class="feat-desc">Order before noon, get your gadget by tomorrow. Our logistics network covers all of Kashmir.</p>
+      <div class="feat-cell">
+        <div class="fc-ico">⚡</div>
+        <h3 class="fc-title">Instant Cash Payment</h3>
+        <p class="fc-desc">UPI transfer the moment your device is collected. No "we'll process it in 3–5 days." Your money, your timeline.</p>
       </div>
-      <div class="feat reveal d3">
-        <div class="feat-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        </div>
-        <h3 class="feat-title">24/7 Human Support</h3>
-        <p class="feat-desc">Real people, real help — anytime. Our support team in Kashmir is always available via chat, call, or WhatsApp.</p>
+      <div class="feat-cell">
+        <div class="fc-ico">🚪</div>
+        <h3 class="fc-title">Free Doorstep Pickup</h3>
+        <p class="fc-desc">You don't move. We come to you — home, office, or shop — anywhere across Srinagar and the Kashmir valley.</p>
       </div>
-      <div class="feat reveal d4">
-        <div class="feat-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        </div>
-        <h3 class="feat-title">7-Day Warranty Check</h3>
-        <p class="feat-desc">Test your device for a full week. Something off? Full refund, no questions asked, no headaches.</p>
+      <div class="feat-cell">
+        <div class="fc-ico">🔄</div>
+        <h3 class="fc-title">Upgrade & Exchange</h3>
+        <p class="fc-desc">Trade in your old device directly toward a new one. Seamless exchange, no paperwork, no trips to a store.</p>
       </div>
-      <div class="feat reveal d5">
-        <div class="feat-icon">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <h3 class="feat-title">Loyalty Rewards</h3>
-        <p class="feat-desc">Every transaction earns you points. Redeem them for exclusive discounts. The more you trade, the more you save.</p>
+      <div class="feat-cell">
+        <div class="fc-ico">📞</div>
+        <h3 class="fc-title">Real Human Support</h3>
+        <p class="fc-desc">Call, WhatsApp, or chat. Our Kashmir-based support team is available around the clock. No bots, no call centres elsewhere.</p>
       </div>
-      <div class="feat reveal d6">
-        <div class="feat-icon">
-          <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
-        </div>
-        <h3 class="feat-title">Instant Exchange</h3>
-        <p class="feat-desc">Upgrade your gadget in minutes. Swap your old device for a new one, or get instant cash. Completely transparent pricing.</p>
+      <div class="feat-cell">
+        <div class="fc-ico">🔒</div>
+        <h3 class="fc-title">7-Day Warranty Check</h3>
+        <p class="fc-desc">Test your device for a full week. Any issue — full refund, zero friction. We take all the risk so you don't have to.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="section how-bg" id="how">
-  <div class="section-inner">
-    <div style="text-align:center">
-      <p class="section-label reveal">The Process</p>
-      <h2 class="section-title reveal">From zero to done<br>in 4 steps.</h2>
-    </div>
-    <div class="steps">
-      <div class="step reveal d1">
-        <div class="step-badge">1</div>
-        <h3 class="step-title">Pick Your Device</h3>
-        <p class="step-desc">Search or browse our catalog. Selling? Select your model and condition from the app in seconds.</p>
-      </div>
-      <div class="step reveal d2">
-        <div class="step-badge">2</div>
-        <h3 class="step-title">Get Instant Quote</h3>
-        <p class="step-desc">Our AI pricing engine gives you a fair, real-time offer based on current market value — no haggling.</p>
-      </div>
-      <div class="step reveal d3">
-        <div class="step-badge">3</div>
-        <h3 class="step-title">Free Pickup / Delivery</h3>
-        <p class="step-desc">We come to you. Schedule a free doorstep pickup or get same-address delivery within 24 hours.</p>
-      </div>
-      <div class="step reveal d4">
-        <div class="step-badge">4</div>
-        <h3 class="step-title">Get Paid — Done</h3>
-        <p class="step-desc">Instant payment to your account the moment the deal is confirmed. No waiting, no delays.</p>
-      </div>
+<!-- BRANDS -->
+<section class="section s-alt">
+  <div class="wrap">
+    <span class="s-label">All Major Brands</span>
+    <h2>We buy &amp; sell everything.</h2>
+    <div class="brands-wrap">
+      <div class="br">🍎 Apple</div>
+      <div class="br">📱 Samsung</div>
+      <div class="br">🔴 OnePlus</div>
+      <div class="br">💙 Xiaomi / Redmi</div>
+      <div class="br">🟢 Realme</div>
+      <div class="br">🔵 Vivo</div>
+      <div class="br">🟠 OPPO</div>
+      <div class="br">💻 MacBook</div>
+      <div class="br">🖥 Lenovo</div>
+      <div class="br">🖥 Dell</div>
+      <div class="br">⌚ Smartwatches</div>
+      <div class="br">🎧 Earbuds</div>
+      <div class="br">📷 Cameras</div>
+      <div class="br">🎮 Consoles</div>
     </div>
   </div>
 </section>
 
-<!-- PROMISE / USP -->
-<section class="section promise-bg" id="promise">
-  <div class="section-inner">
+<!-- PROMISE -->
+<section class="section">
+  <div class="wrap">
+    <span class="s-label">Our Promise</span>
+    <h2>Not a marketplace.<br><span style="color:var(--o)">A guarantee.</span></h2>
     <div class="promise-grid">
-      <div>
-        <p class="section-label reveal-left">Our Promise</p>
-        <h2 class="section-title reveal-left d1">We're not just a marketplace.<br><span style="color:var(--orange)">We're a guarantee.</span></h2>
-        <p class="section-body reveal-left d2" style="margin-bottom:2.5rem">Four commitments we never break — not for volume, not for profit, not for anything.</p>
-        <div class="promise-cards">
-          <div class="p-card reveal-left d2">
-            <div class="p-icon">🎯</div>
-            <div>
-              <h4 class="p-title">Only Genuine — Always</h4>
-              <p class="p-desc">Every device goes through a 32-point inspection checklist. You get exactly what's described, or your money back.</p>
-            </div>
+      <div class="p-list">
+        <div class="p-card">
+          <div class="p-ico">🎯</div>
+          <div>
+            <div class="p-title">Genuine — Always</div>
+            <div class="p-desc">Counterfeit phones have no place here. Every device is physically verified. You get exactly what's listed, or a full refund.</div>
           </div>
-          <div class="p-card reveal-left d3">
-            <div class="p-icon">⚡</div>
-            <div>
-              <h4 class="p-title">One Day Is Our Standard</h4>
-              <p class="p-desc">We built our logistics from scratch to deliver in Kashmir in 24 hours. Not a target — a standard.</p>
-            </div>
+        </div>
+        <div class="p-card">
+          <div class="p-ico">🕐</div>
+          <div>
+            <div class="p-title">Same-Day Is Our Standard</div>
+            <div class="p-desc">We built our logistics from scratch to serve Kashmir. Same-day pickup isn't a promise — it's the default.</div>
           </div>
-          <div class="p-card reveal-left d4">
-            <div class="p-icon">🛡️</div>
-            <div>
-              <h4 class="p-title">Risk-Free, Every Time</h4>
-              <p class="p-desc">7 days to test. Not happy for any reason? Full refund, zero friction. We take all the risk so you don't have to.</p>
-            </div>
+        </div>
+        <div class="p-card">
+          <div class="p-ico">🛡️</div>
+          <div>
+            <div class="p-title">7-Day Risk-Free</div>
+            <div class="p-desc">Test your device a full week. Any issue — full refund, zero friction. We absorb all the risk so you don't have to.</div>
           </div>
-          <div class="p-card reveal-left d5">
-            <div class="p-icon">🎁</div>
-            <div>
-              <h4 class="p-title">Loyalty That Pays Back</h4>
-              <p class="p-desc">Every trade earns you more than cash. Earn points, unlock deals, and become part of a community that values you.</p>
-            </div>
+        </div>
+        <div class="p-card">
+          <div class="p-ico">📍</div>
+          <div>
+            <div class="p-title">Kashmir-First</div>
+            <div class="p-desc">Our entire team is based in Srinagar. We understand Kashmir because we live here — and that shows in everything we do.</div>
           </div>
         </div>
       </div>
-      <div class="shield-wrap reveal-right">
-        <div class="orbit orbit1"><div class="orbit-dot"></div></div>
-        <div class="orbit orbit2"><div class="orbit-dot"></div></div>
-        <div class="shield-bg">
-          <svg class="shield-svg" width="160" height="180" viewBox="0 0 200 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 10 L180 45 L180 120 C180 170 100 215 100 215 C100 215 20 170 20 120 L20 45 Z" fill="rgba(255,127,0,0.08)" stroke="#ff7f00" stroke-width="2.5"/>
-            <path d="M100 35 L160 62 L160 120 C160 158 100 190 100 190 C100 190 40 158 40 120 L40 62 Z" fill="rgba(255,127,0,0.06)"/>
-            <path d="M70 115 L88 133 L132 90" stroke="#ff7f00" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
-              <animate attributeName="stroke-dasharray" from="0 80" to="80 0" dur="1.5s" repeatCount="indefinite"/>
-            </path>
-          </svg>
+      <div class="metrics">
+        <div class="metric">
+          <div class="mv">₹12 Cr+</div>
+          <div class="ml">Paid to sellers across Kashmir</div>
+        </div>
+        <div class="metric">
+          <div class="mv">1,00,000+</div>
+          <div class="ml">Devices successfully traded</div>
+        </div>
+        <div class="metric">
+          <div class="mv">4.8 ★</div>
+          <div class="ml">App rating · 12,000+ reviews</div>
+        </div>
+        <div class="metric" style="background:var(--od);border-color:var(--ob)">
+          <div class="mv" style="font-size:1.2rem;color:var(--ink)">🏔 Kashmir-Built</div>
+          <div class="ml" style="margin-top:.3rem">Founded & operated in Srinagar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section s-alt">
+  <div class="wrap">
+    <span class="s-label">What Customers Say</span>
+    <h2>Real people, real results.</h2>
+    <div class="test-grid">
+      <div class="tcard">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">Sold my iPhone 13 in under 20 minutes. Agent came to Rajbagh, verified on the spot, and I got the money instantly on UPI. Couldn't believe how easy it was.</p>
+        <div class="t-auth">
+          <div class="t-av">👨</div>
+          <div>
+            <div class="t-name">Aadil Rashid</div>
+            <div class="t-loc">Rajbagh, Srinagar</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">Screen had a small issue on day 3 of my 7-day warranty. They picked it up within hours and refunded me fully. No drama, no questions. This is how it should work.</p>
+        <div class="t-auth">
+          <div class="t-av">👩</div>
+          <div>
+            <div class="t-name">Shazia Mir</div>
+            <div class="t-loc">Hazratbal, Srinagar</div>
+          </div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">I checked Cashify, OLX, everywhere — Budget Gadget gave me ₹8,000 more for my OnePlus. The whole process took one afternoon. Never selling anywhere else.</p>
+        <div class="t-auth">
+          <div class="t-av">👨</div>
+          <div>
+            <div class="t-name">Mudasir Khan</div>
+            <div class="t-loc">Sopore, Baramulla</div>
+          </div>
         </div>
       </div>
     </div>
@@ -958,203 +491,85 @@ body::before{
 
 <!-- DOWNLOAD CTA -->
 <section class="cta-section" id="download">
-  <div class="cta-inner">
-    <div class="cta-badge reveal"><span>📱</span> Free Download</div>
-    <h2 class="cta-title reveal d1">Download Budget Gadget.<br><span style="color:var(--orange)">Start today.</span></h2>
-    <p class="cta-sub reveal d2">Join 50,000+ people in Kashmir who buy, sell, and exchange smarter. Available on iOS and Android — free forever.</p>
-    <div class="dl-buttons reveal d3">
-      <a href="#" class="dl-btn">
-        <span class="dl-icon">🍎</span>
+  <div class="wrap">
+    <h2>Your gadget's best price<br>is one tap away.</h2>
+    <p>Join 50,000+ people across Kashmir who buy, sell, and exchange smarter. Available on iOS and Android — always free.</p>
+    <div class="dl-row">
+      <a href="#" class="dl-b">
+        <span class="dl-ico">🍎</span>
         <div>
-          <div class="dl-text-sm">DOWNLOAD ON THE</div>
-          <div class="dl-text-lg">App Store</div>
+          <div class="dl-sm">Download on the</div>
+          <div class="dl-lg">App Store</div>
         </div>
       </a>
-      <a href="#" class="dl-btn">
-        <span class="dl-icon">▶</span>
+      <a href="#" class="dl-b">
+        <span class="dl-ico">▶</span>
         <div>
-          <div class="dl-text-sm">GET IT ON</div>
-          <div class="dl-text-lg">Google Play</div>
+          <div class="dl-sm">Get it on</div>
+          <div class="dl-lg">Google Play</div>
         </div>
       </a>
     </div>
-    <div class="rating-row reveal d4">
-      <span class="stars">★★★★★</span>
-      <span>4.8 out of 5 — 12,000+ reviews</span>
-    </div>
+    <div class="cta-stars"><b>★★★★★</b> &nbsp;4.8 · 12,000+ reviews</div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
+  <div class="wrap">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">Budget<span style="color:var(--orange)">Gadget</span></div>
-        <p class="footer-tagline">Kashmir's most trusted gadget marketplace. Genuine products, lightning-fast delivery, and a community that keeps growing.</p>
+        <div class="f-brand">Budget<b>Gadget</b></div>
+        <p class="f-tag">Kashmir's most trusted gadget marketplace. Genuine devices, instant cash, and a team that actually answers the phone.</p>
         <div class="socials">
-          <a href="#" class="social-btn">f</a>
-          <a href="#" class="social-btn">𝕏</a>
-          <a href="#" class="social-btn">in</a>
-          <a href="#" class="social-btn">📷</a>
+          <a href="https://instagram.com/budget_gadget_sxr" target="_blank" class="soc">📷</a>
+          <a href="#" class="soc">f</a>
+          <a href="#" class="soc">𝕏</a>
+          <a href="#" class="soc">📱</a>
         </div>
       </div>
-      <div class="footer-col">
+      <div class="fcol">
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
+          <li><a href="#">Blog</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="fcol">
         <h4>Help</h4>
         <ul>
-          <li><a href="help.html">Help Center</a></li>
+          <li><a href="help.html">Help Centre</a></li>
           <li><a href="faq.html">FAQs</a></li>
           <li><a href="track-order.html">Track Order</a></li>
           <li><a href="refund.html">Refund Policy</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="fcol">
         <h4>Legal</h4>
         <ul>
           <li><a href="privacy.html">Privacy Policy</a></li>
           <li><a href="terms.html">Terms of Service</a></li>
-          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Account Deletion</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Budget Gadget. All rights reserved.</span>
-      <span>Made with <span>♥</span> in Kashmir</span>
+    <div class="fbot">
+      <span>© 2026 BudgetGadget. All rights reserved.</span>
+      <span>Made with <b>♥</b> in Srinagar, Kashmir</span>
     </div>
   </div>
 </footer>
 
-<!-- Back to top -->
-<button class="back-top" id="backTop">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
 <script>
-/* ── LOADER ── */
-window.addEventListener('load',()=>{
-  setTimeout(()=>document.getElementById('loader').classList.add('gone'),800)
-})
-
-/* ── PROGRESS BAR ── */
-const prog=document.getElementById('progress')
 window.addEventListener('scroll',()=>{
-  const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight)*100
-  prog.style.width=pct+'%'
-})
-
-/* ── CURSOR ── */
-const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing')
-let mx=0,my=0,rx=0,ry=0
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'})
-;(function animCursor(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animCursor)})()
-document.querySelectorAll('a,button,.feat').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2.5)';ring.style.transform='translate(-50%,-50%) scale(1.5)'})
-  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)'})
-})
-
-/* ── NAV SCROLL ── */
-const nav=document.getElementById('nav')
-window.addEventListener('scroll',()=>{
-  nav.classList.toggle('solid',window.scrollY>60)
-  document.getElementById('backTop').classList.toggle('show',window.scrollY>400)
-})
-
-/* ── BACK TO TOP ── */
-document.getElementById('backTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
-
-/* ── SMOOTH ANCHOR ── */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'))
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
-  })
-})
-
-/* ── COUNTER ANIMATION ── */
-function animCount(el){
-  const target=+el.dataset.target,dur=2200
-  let start=null
-  const step=ts=>{
-    if(!start)start=ts
-    const p=Math.min((ts-start)/dur,1)
-    const ease=1-Math.pow(1-p,4)
-    el.textContent=Math.floor(ease*target).toLocaleString()
-    if(p<1)requestAnimationFrame(step)
-    else el.textContent=target.toLocaleString()
-  }
-  requestAnimationFrame(step)
-}
-
-/* ── SCROLL REVEAL + COUNTER TRIGGER ── */
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('in')
-      e.target.querySelectorAll('.counter').forEach(c=>{
-        if(!c.dataset.counted){c.dataset.counted=1;animCount(c)}
-      })
-    }
-  })
-},{threshold:.15,rootMargin:'0px 0px -60px 0px'})
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>io.observe(el))
-
-/* ── FEATURE CARD MOUSE GLOW ── */
-document.querySelectorAll('.feat').forEach(el=>{
-  el.addEventListener('mousemove',e=>{
-    const r=el.getBoundingClientRect()
-    const x=((e.clientX-r.left)/r.width*100).toFixed(1)
-    const y=((e.clientY-r.top)/r.height*100).toFixed(1)
-    el.style.setProperty('--mx',x+'%')
-    el.style.setProperty('--my',y+'%')
-  })
-})
-
-/* ── PARTICLE CANVAS ── */
-const canvas=document.getElementById('particles')
-const ctx=canvas.getContext('2d')
-let W,H,particles=[]
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
-resize();window.addEventListener('resize',resize)
-class Particle{
-  constructor(){this.reset()}
-  reset(){
-    this.x=Math.random()*W;this.y=Math.random()*H
-    this.r=Math.random()*1.5+.3
-    this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3
-    this.life=Math.random()*200+100;this.maxLife=this.life
-    this.color=Math.random()<.5?'255,127,0':'255,255,255'
-  }
-  draw(){
-    this.life--;if(this.life<=0)this.reset()
-    this.x+=this.vx;this.y+=this.vy
-    if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()
-    const alpha=(this.life/this.maxLife)*.4
-    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2)
-    ctx.fillStyle=`rgba(${this.color},${alpha})`;ctx.fill()
-  }
-}
-for(let i=0;i<80;i++)particles.push(new Particle())
-;(function loop(){
-  ctx.clearRect(0,0,W,H)
-  particles.forEach(p=>p.draw())
-  requestAnimationFrame(loop)
-})()
-
-/* ── PREFERS REDUCED MOTION ── */
-if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
-  document.querySelectorAll('*').forEach(el=>{
-    el.style.animation='none';el.style.transition='none'
-  })
-}
+  document.getElementById('btt').classList.toggle('v', window.scrollY > 400);
+});
 </script>
 </body>
 </html>
