@@ -152,7 +152,9 @@ h2 .gr{background:var(--grad);-webkit-background-clip:text;background-clip:text;
 
 /* BRANDS */
 .brands-wrap{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2.4rem}
-.br{font-size:.85rem;font-weight:600;padding:.6rem 1.2rem;border-radius:50px;background:var(--white);border:1px solid var(--line);color:var(--mid);transition:transform .25s var(--ease),border-color .2s,color .2s,box-shadow .25s}
+.br{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;padding:.6rem 1.2rem;border-radius:50px;background:var(--white);border:1px solid var(--line);color:var(--mid);transition:transform .25s var(--ease),border-color .2s,color .2s,box-shadow .25s}
+.br img{width:17px;height:17px;object-fit:contain;display:block}
+.br-dot{width:13px;height:13px;border-radius:50%;display:inline-block;flex-shrink:0}
 .br:hover{transform:translateY(-3px);border-color:var(--o);color:var(--o);box-shadow:0 8px 18px rgba(245,112,10,.15)}
 
 /* PROMISE */
@@ -459,16 +461,16 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
     <span class="s-label rv">All Major Brands</span>
     <h2 class="rv">We buy &amp; sell <span class="gr">everything.</span></h2>
     <div class="brands-wrap">
-      <div class="br">🍎 Apple</div>
-      <div class="br">📱 Samsung</div>
-      <div class="br">🔴 OnePlus</div>
-      <div class="br">💙 Xiaomi / Redmi</div>
-      <div class="br">🟢 Realme</div>
-      <div class="br">🔵 Vivo</div>
-      <div class="br">🟠 OPPO</div>
-      <div class="br">💻 MacBook</div>
-      <div class="br">🖥 Lenovo</div>
-      <div class="br">🖥 Dell</div>
+      <div class="br"><img src="images/apple.svg" alt="" loading="lazy"> Apple</div>
+      <div class="br"><img src="images/samsung.svg" alt="" loading="lazy"> Samsung</div>
+      <div class="br"><img src="images/oneplus.svg" alt="" loading="lazy"> OnePlus</div>
+      <div class="br"><img src="images/xiaomi.svg" alt="" loading="lazy"> Xiaomi / Redmi</div>
+      <div class="br"><span class="br-dot" style="background:#FFC700"></span> Realme</div>
+      <div class="br"><img src="images/vivo.svg" alt="" loading="lazy"> Vivo</div>
+      <div class="br"><img src="images/oppo.svg" alt="" loading="lazy"> OPPO</div>
+      <div class="br"><img src="images/apple.svg" alt="" loading="lazy"> MacBook</div>
+      <div class="br"><img src="images/lenovo.svg" alt="" loading="lazy"> Lenovo</div>
+      <div class="br"><img src="images/dell.svg" alt="" loading="lazy"> Dell</div>
       <div class="br">⌚ Smartwatches</div>
       <div class="br">🎧 Earbuds</div>
       <div class="br">📷 Cameras</div>
