@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Budget Gadget — Kashmir's Gadget Marketplace</title>
-<link rel="icon" type="image/svg+xml" href="images/logo.svg">
+<link rel="icon" type="image/jpeg" href="images/bg-logo.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -39,9 +39,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(250,250,248,.7);backdrop-f
 nav.scrolled{border-bottom-color:var(--line);background:rgba(250,250,248,.85)}
 .nw{max-width:1120px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:.55rem;text-decoration:none}
-.logo-box{width:32px;height:32px;background:var(--grad);border-radius:9px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(245,112,10,.3);transition:transform .4s var(--ease)}
-.logo:hover .logo-box{transform:rotate(-10deg) scale(1.05)}
-.logo-box svg{width:19px;height:19px;fill:#fff;fill-rule:evenodd}
+.logo-box{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:transform .4s var(--ease)}
+.logo:hover .logo-box{transform:scale(1.05)}
+.logo-box img{width:100%;height:100%;object-fit:contain}
 .logo-name{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
 .logo-name b{color:var(--o);font-weight:800}
 .nl{display:flex;align-items:center;gap:2rem}
@@ -270,7 +270,7 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
   <div class="nw">
     <a href="#" class="logo">
       <div class="logo-box">
-        <svg viewBox="0 0 32 32"><path d="M15 4H8a4 4 0 0 0-4 4v7a3 3 0 0 0 .88 2.12l8 8a3 3 0 0 0 4.24 0l7-7a3 3 0 0 0 0-4.24l-8-8A3 3 0 0 0 15 4Zm-5 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"/></svg>
+        <img src="images/bg-logo.jpeg" alt="Budget Gadget logo">
       </div>
       <span class="logo-name">Budget <b>Gadget</b></span>
     </a>
