@@ -179,6 +179,18 @@ h2 .gr{background:var(--grad);-webkit-background-clip:text;background-clip:text;
 .stat-n{font-size:2.8rem;font-weight:900;letter-spacing:-.05em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block;line-height:1}
 .stat-l{font-size:.78rem;color:var(--mid);font-weight:500;margin-top:.5rem;display:block}
 
+/* CATEGORIES */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3.2rem}
+.cat{position:relative;background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:2rem 1.4rem 1.8rem;text-align:center;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s,border-color .3s}
+.cat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:0;transition:opacity .35s}
+.cat:hover{transform:translateY(-6px);box-shadow:0 24px 50px -18px rgba(0,0,0,.16);border-color:var(--ob)}
+.cat:hover::before{opacity:1}
+.cat-ico{width:56px;height:56px;margin:0 auto 1rem;border-radius:16px;background:var(--od);display:flex;align-items:center;justify-content:center;font-size:1.7rem;transition:transform .4s var(--ease)}
+.cat:hover .cat-ico{transform:scale(1.12) rotate(-6deg);background:var(--grad)}
+.cat-title{font-size:.95rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.3rem}
+.cat-desc{font-size:.76rem;color:var(--dim);line-height:1.5}
+.cat-badge{position:absolute;top:.85rem;right:.85rem;font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--o);background:var(--od);border:1px solid var(--ob);padding:.22rem .6rem;border-radius:50px}
+
 /* BRANDS */
 .brands-wrap{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2.4rem}
 .br{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;padding:.6rem 1.2rem;border-radius:50px;background:var(--white);border:1px solid var(--line);color:var(--mid);transition:transform .25s var(--ease),border-color .2s,color .2s,box-shadow .25s}
@@ -213,6 +225,30 @@ h2 .gr{background:var(--grad);-webkit-background-clip:text;background-clip:text;
 .t-av{width:38px;height:38px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;box-shadow:0 4px 12px rgba(245,112,10,.25)}
 .t-name{font-size:.88rem;font-weight:800;letter-spacing:-.02em}
 .t-loc{font-size:.74rem;color:var(--dim)}
+
+/* STORE */
+.store-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;margin-top:3.2rem}
+.store-info{display:flex;flex-direction:column;gap:1rem}
+.si-row{display:flex;gap:1.1rem;align-items:flex-start;background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.4rem 1.6rem;transition:transform .35s var(--ease),box-shadow .35s,border-color .25s}
+.si-row:hover{transform:translateX(6px);border-color:var(--ob);box-shadow:0 16px 36px -18px rgba(0,0,0,.16)}
+.si-ico{font-size:1.4rem;flex-shrink:0;width:46px;height:46px;border-radius:13px;background:var(--od);display:flex;align-items:center;justify-content:center}
+.si-title{font-size:.95rem;font-weight:800;margin-bottom:.3rem;letter-spacing:-.02em}
+.si-desc{font-size:.85rem;color:var(--mid);line-height:1.65}
+.si-desc a{color:var(--o);font-weight:600;text-decoration:none}
+.si-desc a:hover{text-decoration:underline}
+.store-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.6rem}
+.store-card{background:var(--ink);border-radius:var(--r-lg);padding:2.6rem 2.2rem;position:relative;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s}
+.store-card:hover{transform:translateY(-5px);box-shadow:0 28px 60px -20px rgba(0,0,0,.45)}
+.store-card::before{content:'';position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(245,112,10,.32),transparent 70%);top:-140px;right:-110px;filter:blur(40px)}
+.sc-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--o3);background:rgba(245,112,10,.14);border:1px solid rgba(245,112,10,.3);padding:.4rem .9rem;border-radius:50px;margin-bottom:1.4rem;position:relative;z-index:1}
+.sc-ico{font-size:2.6rem;display:block;margin-bottom:1rem;position:relative;z-index:1}
+.sc-name{font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.15;position:relative;z-index:1}
+.sc-name b{background:linear-gradient(135deg,#FFB066,#FF8C2A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sc-addr{font-size:.86rem;color:rgba(255,255,255,.65);line-height:1.65;margin:.7rem 0 1.6rem;position:relative;z-index:1}
+.sc-list{display:flex;flex-direction:column;gap:.6rem;position:relative;z-index:1}
+.sc-item{display:flex;align-items:center;gap:.7rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:.75rem 1rem;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.85);transition:border-color .25s,transform .3s var(--ease)}
+.sc-item:hover{border-color:rgba(245,112,10,.5);transform:translateX(4px)}
+.sc-item span{font-size:1rem}
 
 /* CTA */
 .cta-section{position:relative;background:var(--ink);padding:6rem 0;text-align:center;overflow:hidden}
@@ -268,8 +304,10 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
   .h-btns,.h-trust{justify-content:center}
   .phone-wrap{order:-1}
   .how-grid,.feat-grid{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
   .stats-row{grid-template-columns:repeat(2,1fr)}
   .promise-grid{grid-template-columns:1fr}
+  .store-grid{grid-template-columns:1fr;gap:2rem}
   .test-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
   .fbot{flex-direction:column;gap:.6rem;text-align:center}
@@ -306,6 +344,7 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
     <div class="nl">
       <a href="#how">How It Works</a>
       <a href="#features">Features</a>
+      <a href="#store">Store</a>
       <a href="#download">Download</a>
     </div>
     <div class="nav-actions">
@@ -326,7 +365,7 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
     <div>
       <div class="h-tag hero-in"><span class="h-dot"></span>Kashmir's #1 Gadget App</div>
       <h1 class="hero-in">Sell. Buy.<br><span class="gr">Exchange.</span><br>Instantly.</h1>
-      <p class="h-sub hero-in">Get the best price for your old device, or find your next gadget at a fraction of the cost. Doorstep pickup, instant cash — Kashmir-built, Kashmir-trusted.</p>
+      <p class="h-sub hero-in">Get the best price for your old phone, iPad, laptop, or EarPods — or find your next gadget at a fraction of the cost. Doorstep pickup, instant cash — Kashmir-built, Kashmir-trusted.</p>
       <div class="h-btns hero-in">
         <a href="#download" class="btn-p">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 16l-5-5 1.4-1.4 2.6 2.6V4h2v8.2l2.6-2.6L17 11l-5 5z"/><path d="M5 20h14"/></svg>
@@ -398,6 +437,7 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
     <span class="ds-item"><b>◆</b> Free Doorstep Pickup</span>
     <span class="ds-item"><b>◆</b> Made in Kashmir ♥</span>
     <span class="ds-item"><b>◆</b> 32-Point Inspection</span>
+    <span class="ds-item"><b>◆</b> Phones · iPads · Laptops · EarPods</span>
     <span class="ds-item"><b>◆</b> 100% Genuine</span>
     <span class="ds-item"><b>◆</b> Same-Day Pickup</span>
     <span class="ds-item"><b>◆</b> Instant UPI Payment</span>
@@ -406,6 +446,7 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
     <span class="ds-item"><b>◆</b> Free Doorstep Pickup</span>
     <span class="ds-item"><b>◆</b> Made in Kashmir ♥</span>
     <span class="ds-item"><b>◆</b> 32-Point Inspection</span>
+    <span class="ds-item"><b>◆</b> Phones · iPads · Laptops · EarPods</span>
   </div>
 </div>
 
@@ -432,7 +473,7 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
         <div class="hc-num">01</div>
         <span class="hc-ico">🔍</span>
         <h3 class="hc-title">Select Your Device</h3>
-        <p class="hc-desc">Search your phone model and pick the condition — Excellent, Good, or Fair. Takes 30 seconds in the app.</p>
+        <p class="hc-desc">Phone, iPad, laptop, EarPods — search your model and pick the condition: Excellent, Good, or Fair. Takes 30 seconds in the app.</p>
       </div>
       <div class="how-cell">
         <div class="hc-num">02</div>
@@ -493,8 +534,51 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
 <!-- BRANDS -->
 <section class="section s-alt">
   <div class="wrap">
-    <span class="s-label rv">All Major Brands</span>
+    <span class="s-label rv">More Than Phones</span>
     <h2 class="rv">We buy &amp; sell <span class="gr">everything.</span></h2>
+    <div class="cat-grid">
+      <div class="cat rv rv-1">
+        <span class="cat-badge">Popular</span>
+        <div class="cat-ico">📱</div>
+        <div class="cat-title">Smartphones</div>
+        <div class="cat-desc">iPhone, Samsung, OnePlus &amp; every major brand</div>
+      </div>
+      <div class="cat rv rv-2">
+        <div class="cat-ico">📲</div>
+        <div class="cat-title">iPads &amp; Tablets</div>
+        <div class="cat-desc">iPad, Galaxy Tab &amp; all Android tablets</div>
+      </div>
+      <div class="cat rv rv-3">
+        <div class="cat-ico">💻</div>
+        <div class="cat-title">Laptops &amp; MacBooks</div>
+        <div class="cat-desc">MacBook, Dell, Lenovo, HP — gaming rigs too</div>
+      </div>
+      <div class="cat rv rv-4">
+        <div class="cat-ico">🎧</div>
+        <div class="cat-title">EarPods &amp; Audio</div>
+        <div class="cat-desc">AirPods, EarPods, earbuds &amp; headphones</div>
+      </div>
+      <div class="cat rv rv-1">
+        <div class="cat-ico">⌚</div>
+        <div class="cat-title">Smartwatches</div>
+        <div class="cat-desc">Apple Watch, Galaxy Watch &amp; fitness bands</div>
+      </div>
+      <div class="cat rv rv-2">
+        <div class="cat-ico">🎮</div>
+        <div class="cat-title">Gaming Consoles</div>
+        <div class="cat-desc">PlayStation, Xbox &amp; Nintendo Switch</div>
+      </div>
+      <div class="cat rv rv-3">
+        <div class="cat-ico">📷</div>
+        <div class="cat-title">Cameras</div>
+        <div class="cat-desc">DSLR, mirrorless, GoPro &amp; drones</div>
+      </div>
+      <div class="cat rv rv-4">
+        <div class="cat-ico">🔌</div>
+        <div class="cat-title">Other Gadgets</div>
+        <div class="cat-desc">If it powers on, we'll quote it — just ask</div>
+      </div>
+    </div>
     <div class="brands-wrap">
       <div class="br"><img src="images/apple.svg" alt="" loading="lazy"> Apple</div>
       <div class="br"><img src="images/samsung.svg" alt="" loading="lazy"> Samsung</div>
@@ -506,10 +590,10 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
       <div class="br"><img src="images/apple.svg" alt="" loading="lazy"> MacBook</div>
       <div class="br"><img src="images/lenovo.svg" alt="" loading="lazy"> Lenovo</div>
       <div class="br"><img src="images/dell.svg" alt="" loading="lazy"> Dell</div>
-      <div class="br">⌚ Smartwatches</div>
-      <div class="br">🎧 Earbuds</div>
-      <div class="br">📷 Cameras</div>
-      <div class="br">🎮 Consoles</div>
+      <div class="br">💻 HP</div>
+      <div class="br">📲 iPad</div>
+      <div class="br">🎧 AirPods &amp; EarPods</div>
+      <div class="br">➕ And many more</div>
     </div>
   </div>
 </section>
@@ -615,6 +699,55 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
   </div>
 </section>
 
+<!-- STORE -->
+<section class="section" id="store">
+  <div class="wrap">
+    <span class="s-label rv">Visit Us Offline</span>
+    <h2 class="rv">Prefer to walk in?<br><span class="gr">Visit our store.</span></h2>
+    <div class="store-grid">
+      <div class="store-info">
+        <div class="si-row rv rv-1">
+          <div class="si-ico">📍</div>
+          <div>
+            <div class="si-title">Budget Gadget Store — Nowgam</div>
+            <div class="si-desc">Near Cooperative Bank, Nowgam, Srinagar, Jammu &amp; Kashmir. Easy to reach from anywhere in the city.</div>
+          </div>
+        </div>
+        <div class="si-row rv rv-2">
+          <div class="si-ico">🛍️</div>
+          <div>
+            <div class="si-title">Everything, in person</div>
+            <div class="si-desc">Browse phones, iPads, laptops, EarPods and more — get an instant quote, sell, buy, or exchange on the spot.</div>
+          </div>
+        </div>
+        <div class="si-row rv rv-3">
+          <div class="si-ico">📷</div>
+          <div>
+            <div class="si-title">DM us anytime</div>
+            <div class="si-desc">Latest arrivals and deals drop first on Instagram — <a href="https://instagram.com/budget_gadget_sxr" target="_blank" rel="noopener">@budget_gadget_sxr</a>. DM us for quick quotes.</div>
+          </div>
+        </div>
+        <div class="store-btns rv rv-4">
+          <a href="https://maps.google.com/?q=Budget+Gadget,+Nowgam,+Srinagar" target="_blank" rel="noopener" class="btn-p">🧭 Get Directions</a>
+          <a href="https://instagram.com/budget_gadget_sxr" target="_blank" rel="noopener" class="btn-s">Follow on Instagram →</a>
+        </div>
+      </div>
+      <div class="store-card rv rv-2">
+        <span class="sc-badge"><span class="h-dot"></span>Walk-ins Welcome</span>
+        <span class="sc-ico">🏬</span>
+        <div class="sc-name">Budget <b>Gadget</b><br>Nowgam, Srinagar</div>
+        <p class="sc-addr">Near Cooperative Bank, Nowgam · Srinagar, J&amp;K</p>
+        <div class="sc-list">
+          <div class="sc-item"><span>⚡</span> Instant quotes at the counter</div>
+          <div class="sc-item"><span>🔄</span> Same-day exchange &amp; upgrade</div>
+          <div class="sc-item"><span>🖐</span> Try every device before you buy</div>
+          <div class="sc-item"><span>🛡</span> Same 7-day warranty as the app</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- DOWNLOAD CTA -->
 <section class="cta-section" id="download">
   <div class="cta-glow"></div>
@@ -652,7 +785,7 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
           </span>
           Budget <b>Gadget</b>
         </div>
-        <p class="f-tag">Kashmir's most trusted gadget marketplace. Genuine devices, instant cash, and a team that actually answers the phone.</p>
+        <p class="f-tag">Kashmir's most trusted gadget marketplace. Genuine devices, instant cash, and a team that actually answers the phone. Visit our store — Near Cooperative Bank, Nowgam, Srinagar.</p>
         <div class="socials">
           <a href="https://instagram.com/budget_gadget_sxr" target="_blank" class="soc">📷</a>
           <a href="#" class="soc">f</a>
@@ -664,6 +797,7 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
         <h4>Company</h4>
         <ul>
           <li><a href="about.html">About Us</a></li>
+          <li><a href="#store">Visit Our Store</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="#">Careers</a></li>
           <li><a href="#">Blog</a></li>
@@ -683,7 +817,7 @@ footer{background:#0a0a0b;padding:4.5rem 0 2rem}
         <ul>
           <li><a href="privacy.html">Privacy Policy</a></li>
           <li><a href="terms.html">Terms of Service</a></li>
-          <li><a href="#">Account Deletion</a></li>
+          <li><a href="delete-account.html">Account Deletion</a></li>
         </ul>
       </div>
     </div>

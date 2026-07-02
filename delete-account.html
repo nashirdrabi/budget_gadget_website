@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Your Account — Budget Gadget</title>
+<meta name="description" content="Step-by-step instructions to permanently delete your Budget Gadget account and data from the app.">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', t);
+  }catch(e){}
+})();
+</script>
+<link rel="icon" type="image/jpeg" href="images/bg-logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --o:#F5700A;
+  --o2:#FF8C2A;
+  --o3:#FFB066;
+  --od:rgba(245,112,10,.1);
+  --ob:rgba(245,112,10,.2);
+  --bg:#FAFAF8;
+  --bg2:#F3F1ED;
+  --ink:#0E0E10;
+  --mid:#555;
+  --dim:#999;
+  --line:#E8E5E0;
+  --white:#fff;
+  --text:var(--ink);
+  --navbg:rgba(250,250,248,.7);
+  --navbg-s:rgba(250,250,248,.85);
+  --r:16px;
+  --r-lg:24px;
+  --grad:linear-gradient(135deg,#F5700A 0%,#FF8C2A 100%);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html[data-theme="dark"]{
+  --bg:#0c0c0e;
+  --bg2:#131315;
+  --text:#F4F2EE;
+  --mid:#ABA8A1;
+  --dim:#726F69;
+  --line:#262628;
+  --white:#18181b;
+  --navbg:rgba(12,12,14,.7);
+  --navbg-s:rgba(12,12,14,.85);
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Inter','SF Pro Display',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;transition:background-color .35s ease,color .35s ease}
+
+.progress{position:fixed;top:0;left:0;height:2.5px;width:0;background:var(--grad);z-index:300;transition:width .1s linear}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--navbg);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid transparent;padding:.85rem 0;transition:border-color .3s,background-color .3s}
+nav.scrolled{border-bottom-color:var(--line);background:var(--navbg-s)}
+.nw{max-width:1120px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:.55rem;text-decoration:none}
+.logo-box{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:transform .4s var(--ease)}
+.logo:hover .logo-box{transform:scale(1.05)}
+.logo-box img{width:100%;height:100%;object-fit:contain}
+.logo-name{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;color:var(--text)}
+.logo-name b{color:var(--o);font-weight:800}
+.nl{display:flex;align-items:center;gap:2rem}
+.nl a{font-size:.85rem;font-weight:500;color:var(--mid);text-decoration:none;transition:color .2s;position:relative}
+.nl a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--o);border-radius:2px;transition:width .3s var(--ease)}
+.nl a:hover{color:var(--text)}
+.nl a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:.7rem}
+.theme-toggle{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--mid);padding:0;transition:transform .3s var(--ease),background-color .3s,border-color .3s,color .3s}
+.theme-toggle:hover{transform:translateY(-2px);border-color:var(--o);color:var(--o)}
+.theme-toggle svg{width:17px;height:17px}
+.theme-toggle .ti-moon{display:none}
+html[data-theme="dark"] .theme-toggle .ti-sun{display:none}
+html[data-theme="dark"] .theme-toggle .ti-moon{display:block}
+.nav-btn{font-size:.82rem;font-weight:600;padding:.55rem 1.3rem;border-radius:50px;background:var(--ink);color:#fff;text-decoration:none;transition:transform .25s var(--ease),box-shadow .25s}
+html[data-theme="dark"] .nav-btn{background:var(--grad)}
+.nav-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18)}
+
+/* PAGE HERO */
+.page-hero{position:relative;overflow:hidden;padding:4.5rem 0 3.5rem}
+.glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.45;z-index:0;pointer-events:none}
+.glow-1{width:420px;height:420px;background:radial-gradient(circle,rgba(245,112,10,.4),transparent 70%);top:-160px;right:-100px}
+.glow-2{width:320px;height:320px;background:radial-gradient(circle,rgba(255,176,102,.35),transparent 70%);bottom:-160px;left:-120px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1}
+.crumb{font-size:.78rem;color:var(--dim);margin-bottom:1.2rem;font-weight:500}
+.crumb a{color:var(--mid);text-decoration:none;transition:color .2s}
+.crumb a:hover{color:var(--o)}
+.crumb span{color:var(--o)}
+.s-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);display:inline-flex;align-items:center;gap:.5rem;margin-bottom:.8rem}
+.s-label::before{content:'';width:18px;height:2px;background:var(--o);border-radius:2px}
+h1{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:800;letter-spacing:-.05em;line-height:1;margin-bottom:1.2rem}
+h1 .gr{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.page-sub{font-size:1.02rem;color:var(--mid);line-height:1.7;max-width:560px}
+
+/* STEPS + PHONE LAYOUT */
+.del-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:center;padding:3.5rem 0 2rem}
+.steps{display:flex;flex-direction:column;position:relative}
+.step{display:flex;gap:1.3rem;position:relative;padding-bottom:2rem}
+.step:last-child{padding-bottom:0}
+.step::before{content:'';position:absolute;left:21px;top:48px;bottom:4px;width:2px;background:linear-gradient(var(--ob),transparent);border-radius:2px}
+.step:last-child::before{display:none}
+.step-num{width:44px;height:44px;border-radius:14px;background:var(--grad);color:#fff;font-size:1rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 18px rgba(245,112,10,.3);transition:transform .35s var(--ease)}
+.step:hover .step-num{transform:scale(1.1) rotate(-5deg)}
+.step-body{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:1.4rem 1.6rem;flex:1;transition:transform .35s var(--ease),box-shadow .35s,border-color .25s}
+.step:hover .step-body{transform:translateX(5px);border-color:var(--ob);box-shadow:0 16px 36px -18px rgba(0,0,0,.14)}
+.step-t{font-size:1.02rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.35rem}
+.step-d{font-size:.87rem;color:var(--mid);line-height:1.7}
+.step-d b{color:var(--o);font-weight:700}
+
+/* PHONE MOCK */
+.phone-wrap{display:flex;justify-content:center;perspective:1200px}
+.phone{position:relative;width:250px;height:520px;background:linear-gradient(160deg,#1a1a1c,#0a0a0b);border-radius:42px;padding:11px;box-shadow:0 40px 80px -20px rgba(0,0,0,.45),0 0 0 2px rgba(255,255,255,.06) inset;transform:rotateY(12deg) rotateX(3deg);transition:transform .5s var(--ease)}
+.phone-wrap:hover .phone{transform:rotateY(5deg) rotateX(1deg)}
+.phone-screen{width:100%;height:100%;background:linear-gradient(165deg,#FFF8F2,#FBEFE4);color:var(--ink);border-radius:32px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:90px;height:22px;background:#0a0a0b;border-radius:0 0 14px 14px;z-index:3}
+.ps-top{padding:2.4rem 1.1rem 1rem;background:var(--grad);color:#fff}
+.ps-title{font-size:.95rem;font-weight:800;letter-spacing:-.02em}
+.ps-sub{font-size:.6rem;opacity:.8;margin-top:.15rem}
+.ps-body{padding:1rem;display:flex;flex-direction:column;gap:.55rem;flex:1}
+.ps-row{background:#fff;border-radius:12px;padding:.68rem .8rem;display:flex;align-items:center;gap:.6rem;box-shadow:0 3px 10px rgba(0,0,0,.05)}
+.ps-ico{width:30px;height:30px;border-radius:9px;background:var(--od);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.ps-l1{font-size:.68rem;font-weight:700;letter-spacing:-.01em}
+.ps-arrow{margin-left:auto;color:#bbb;font-size:.7rem}
+.ps-row.danger{background:#FFF0F0;border:1.5px solid #FFD3D3;animation:glowpulse 2.2s infinite}
+.ps-row.danger .ps-ico{background:rgba(220,38,38,.1)}
+.ps-row.danger .ps-l1{color:#DC2626}
+@keyframes glowpulse{0%,100%{box-shadow:0 3px 10px rgba(220,38,38,.08)}50%{box-shadow:0 3px 18px rgba(220,38,38,.28)}}
+.tap-hint{position:absolute;bottom:6.5%;right:-14%;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:.6rem .85rem;display:flex;align-items:center;gap:.5rem;box-shadow:0 12px 30px rgba(0,0,0,.12);animation:bob 5s ease-in-out infinite;color:var(--ink)}
+.tap-ico{font-size:1.1rem}
+.tap-lbl{font-size:.6rem;color:#999;text-transform:uppercase;letter-spacing:.05em}
+.tap-val{font-size:.78rem;font-weight:800;letter-spacing:-.02em;color:#DC2626}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* INFO CARDS */
+.info-band{padding:3rem 0 5rem}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.info-cell{background:var(--white);padding:2rem;border-radius:var(--r-lg);border:1px solid var(--line);transition:transform .4s var(--ease),box-shadow .4s,border-color .3s}
+.info-cell:hover{transform:translateY(-6px);box-shadow:0 24px 50px -18px rgba(0,0,0,.16);border-color:var(--ob)}
+.ic-ico{width:46px;height:46px;border-radius:13px;background:var(--od);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.1rem}
+.ic-title{font-size:1rem;font-weight:800;margin-bottom:.5rem;letter-spacing:-.02em}
+.ic-desc{font-size:.85rem;color:var(--mid);line-height:1.7}
+.ic-desc a{color:var(--o);font-weight:600;text-decoration:none}
+.ic-desc a:hover{text-decoration:underline}
+
+/* HELP CTA */
+.help-band{background:var(--ink);padding:4.5rem 0;text-align:center;position:relative;overflow:hidden}
+.help-glow{position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(245,112,10,.3),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);filter:blur(60px)}
+.help-band .wrap{position:relative;z-index:1}
+.help-band h2{color:#fff;font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:800;letter-spacing:-.04em}
+.help-band h2 .gr{background:linear-gradient(135deg,#FFB066,#FF8C2A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.help-band p{color:rgba(255,255,255,.7);margin:.9rem auto 2rem;max-width:460px;font-size:.95rem;line-height:1.7}
+.help-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;font-weight:600;padding:.85rem 1.8rem;border-radius:50px;background:var(--grad);color:#fff;text-decoration:none;box-shadow:0 8px 24px rgba(245,112,10,.32);transition:transform .25s var(--ease),box-shadow .25s}
+.help-btn:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(245,112,10,.42)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv-1.in{transition-delay:.06s}.rv-2.in{transition-delay:.12s}.rv-3.in{transition-delay:.18s}.rv-4.in{transition-delay:.24s}
+
+/* FOOTER */
+footer{background:#0a0a0b;padding:4.5rem 0 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.f-brand{font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:.8rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem}
+.f-brand b{color:var(--o)}
+.f-mark{width:30px;height:30px;background:var(--grad);border-radius:9px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(245,112,10,.3)}
+.f-mark svg{width:17px;height:17px;fill:#fff;fill-rule:evenodd}
+.f-tag{font-size:.85rem;color:#888;line-height:1.7;margin-bottom:1.3rem}
+.socials{display:flex;gap:.55rem}
+.soc{width:36px;height:36px;border-radius:50%;background:#1a1a1c;border:1px solid #2a2a2c;display:flex;align-items:center;justify-content:center;text-decoration:none;color:#888;font-size:.8rem;transition:transform .25s var(--ease),background .2s,color .2s}
+.soc:hover{background:var(--grad);border-color:transparent;color:#fff;transform:translateY(-3px)}
+.fcol h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:1.1rem}
+.fcol ul{list-style:none}
+.fcol li{margin-bottom:.6rem}
+.fcol a{font-size:.85rem;color:#777;text-decoration:none;transition:color .2s,padding-left .2s}
+.fcol a:hover{color:var(--o);padding-left:3px}
+.fbot{border-top:1px solid #1a1a1c;padding-top:1.6rem;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:#666}
+.fbot b{color:var(--o)}
+
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:var(--grad);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(10px) scale(.9);transition:opacity .3s,transform .3s var(--ease);box-shadow:0 8px 20px rgba(245,112,10,.4);z-index:200}
+.btt.v{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.btt:hover{transform:translateY(-3px) scale(1.05)}
+
+@media(max-width:900px){
+  .del-layout{grid-template-columns:1fr;gap:3rem}
+  .phone-wrap{order:-1}
+  .tap-hint{right:2%}
+  .info-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .fbot{flex-direction:column;gap:.6rem;text-align:center}
+  .nl{display:none}
+}
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1!important;transform:none!important;transition:none!important}
+  .tap-hint,.ps-row.danger{animation:none!important}
+  html{scroll-behavior:auto}
+  *{transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nw">
+    <a href="index.html" class="logo">
+      <div class="logo-box">
+        <img src="images/bg-logo.jpeg" alt="Budget Gadget logo">
+      </div>
+      <span class="logo-name">Budget <b>Gadget</b></span>
+    </a>
+    <div class="nl">
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#download">Download</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="ti-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        <svg class="ti-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="index.html#download" class="nav-btn">Get the App</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Home</a> &nbsp;/&nbsp; <span>Delete Account</span></div>
+    <span class="s-label">Account &amp; Data</span>
+    <h1>Delete your account,<br><span class="gr">on your terms.</span></h1>
+    <p class="page-sub">You're always in control of your data. Deleting your Budget Gadget account takes under a minute, right from the app's Account screen — no calls, no forms, no waiting.</p>
+  </div>
+</header>
+
+<!-- STEPS -->
+<div class="wrap">
+  <div class="del-layout">
+    <div class="steps">
+      <div class="step rv rv-1">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-t">Open the Budget Gadget app</div>
+          <div class="step-d">Launch the app on your phone and log in to the account you want to delete.</div>
+        </div>
+      </div>
+      <div class="step rv rv-2">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-t">Go to the Account screen</div>
+          <div class="step-d">Tap the <b>Account</b> (profile) tab in the bottom navigation bar.</div>
+        </div>
+      </div>
+      <div class="step rv rv-3">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-t">Tap "Delete Account"</div>
+          <div class="step-d">Scroll to the bottom of the Account screen and tap <b>Delete Account</b>.</div>
+        </div>
+      </div>
+      <div class="step rv rv-4">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-t">Confirm — and you're done</div>
+          <div class="step-d">Confirm the deletion in the pop-up. Your account and personal data are permanently removed. <b>This cannot be undone.</b></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHONE MOCK -->
+    <div class="phone-wrap rv">
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="notch"></div>
+          <div class="ps-top">
+            <div class="ps-title">Account</div>
+            <div class="ps-sub">Manage your profile &amp; settings</div>
+          </div>
+          <div class="ps-body">
+            <div class="ps-row">
+              <div class="ps-ico">👤</div>
+              <div class="ps-l1">Edit Profile</div>
+              <div class="ps-arrow">›</div>
+            </div>
+            <div class="ps-row">
+              <div class="ps-ico">📦</div>
+              <div class="ps-l1">My Orders</div>
+              <div class="ps-arrow">›</div>
+            </div>
+            <div class="ps-row">
+              <div class="ps-ico">📍</div>
+              <div class="ps-l1">Saved Addresses</div>
+              <div class="ps-arrow">›</div>
+            </div>
+            <div class="ps-row">
+              <div class="ps-ico">💳</div>
+              <div class="ps-l1">Payment Details</div>
+              <div class="ps-arrow">›</div>
+            </div>
+            <div class="ps-row">
+              <div class="ps-ico">🔔</div>
+              <div class="ps-l1">Notifications</div>
+              <div class="ps-arrow">›</div>
+            </div>
+            <div class="ps-row danger">
+              <div class="ps-ico">🗑️</div>
+              <div class="ps-l1">Delete Account</div>
+              <div class="ps-arrow">›</div>
+            </div>
+          </div>
+        </div>
+        <div class="tap-hint">
+          <span class="tap-ico">👆</span>
+          <div><div class="tap-lbl">Step 3</div><div class="tap-val">Tap here</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT HAPPENS -->
+<section class="info-band">
+  <div class="wrap">
+    <span class="s-label rv">Good to Know</span>
+    <h2 class="rv" style="font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:800;letter-spacing:-.04em;margin-bottom:2.4rem">What happens <span class="gr" style="background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">next?</span></h2>
+    <div class="info-grid">
+      <div class="info-cell rv rv-1">
+        <div class="ic-ico">🧹</div>
+        <div class="ic-title">Your data is erased</div>
+        <div class="ic-desc">Your profile, phone number, email, saved addresses, and payment details are permanently deleted from our systems.</div>
+      </div>
+      <div class="info-cell rv rv-2">
+        <div class="ic-ico">🧾</div>
+        <div class="ic-title">Legal records only</div>
+        <div class="ic-desc">Completed transaction records (invoices, device IMEIs) are kept only as long as Indian tax and anti-fraud law requires, then erased. See our <a href="privacy.html">Privacy Policy</a>.</div>
+      </div>
+      <div class="info-cell rv rv-3">
+        <div class="ic-ico">⏳</div>
+        <div class="ic-title">Open orders finish first</div>
+        <div class="ic-desc">If you have a pickup or delivery in progress, complete or cancel it before deleting — active orders block deletion to protect your payout.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HELP CTA -->
+<section class="help-band">
+  <div class="help-glow"></div>
+  <div class="wrap">
+    <h2 class="rv">Can't access the app? <span class="gr">We'll do it for you.</span></h2>
+    <p class="rv">Email us from your registered email address with the subject "Delete my account" and our Srinagar team will process it within 7 working days.</p>
+    <a href="mailto:support@budgetgadget.in?subject=Delete%20my%20account" class="help-btn rv">✉️ &nbsp;support@budgetgadget.in</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="f-brand">
+          <span class="f-mark">
+            <svg viewBox="0 0 32 32"><path d="M15 4H8a4 4 0 0 0-4 4v7a3 3 0 0 0 .88 2.12l8 8a3 3 0 0 0 4.24 0l7-7a3 3 0 0 0 0-4.24l-8-8A3 3 0 0 0 15 4Zm-5 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"/></svg>
+          </span>
+          Budget <b>Gadget</b>
+        </div>
+        <p class="f-tag">Kashmir's most trusted gadget marketplace. Genuine devices, instant cash, and a team that actually answers the phone. Visit our store — Near Cooperative Bank, Nowgam, Srinagar.</p>
+        <div class="socials">
+          <a href="https://instagram.com/budget_gadget_sxr" target="_blank" class="soc">📷</a>
+          <a href="#" class="soc">f</a>
+          <a href="#" class="soc">𝕏</a>
+          <a href="#" class="soc">📱</a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="help.html">Help Centre</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="track-order.html">Track Order</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="delete-account.html">Account Deletion</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 BudgetGadget. All rights reserved.</span>
+      <span>Made with <b>♥</b> in Srinagar, Kashmir</span>
+    </div>
+  </div>
+</footer>
+
+<button class="btt" id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nav = document.getElementById('nav');
+  var btt = document.getElementById('btt');
+  var progress = document.getElementById('progress');
+  var themeToggle = document.getElementById('themeToggle');
+
+  themeToggle.addEventListener('click', function(){
+    var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try{ localStorage.setItem('theme', next); }catch(e){}
+  });
+
+  function onScroll(){
+    var y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 10);
+    btt.classList.toggle('v', y > 500);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>
