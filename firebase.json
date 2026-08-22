@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "budgetgadget-website",
     "public": ".",
     "ignore": [
       "firebase.json",
